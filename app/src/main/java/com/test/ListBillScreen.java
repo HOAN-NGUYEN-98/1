@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.test.api.ApiService;
 import com.test.models.Bill;
 import com.test.adapters.BillAdapter;
+import com.test.models.BillDetailRespone;
 import com.test.my_interface.IClickItemBillListener;
 
 import java.util.ArrayList;

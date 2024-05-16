@@ -6,14 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tool:context=".MainActivity">
+    tool:context=".ListBillScreen">
     <EditText
         android:id="@+id/edSearch"
-        android:drawableLeft="@drawable/smartphone"
+        android:hint=" ID Bill"
+        android:drawableStart="@drawable/smartphone"
         android:layout_margin="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:maxLines="1" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -22,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp" />
 
 

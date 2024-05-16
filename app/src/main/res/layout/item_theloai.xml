@@ -2,38 +2,58 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_item_the_loai"
     android:layout_width="match_parent"
-    android:layout_height="56dp"
+    android:layout_height="wrap_content"
     android:padding="4dp">
+
     <ImageView
-        android:id="@+id/ivIcon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@drawable/listbook"
-        android:scaleType="fitXY" />
+        android:id="@+id/img_avatar"
+        android:layout_width="106dp"
+        android:layout_height="115dp"
+        android:src="@drawable/bookcon" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_toRightOf="@+id/ivIcon"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/img_avatar"
+        android:layout_marginStart="10dp"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/tvMaTheLoai"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:textStyle="bold" />
+            android:text="id type"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
         <TextView
             android:id="@+id/tvTenTheLoai"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical" />
+            android:layout_height="wrap_content"
+            android:text="name type"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/tvMoTa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="describe"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/tvVitri"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="location"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
     </LinearLayout>
+
     <ImageView
         android:id="@+id/ivDelete"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_alignParentRight="true"
+        android:layout_width="81dp"
+        android:layout_height="132dp"
+        android:layout_alignParentEnd="true"
         android:src="@drawable/delete" />
 </RelativeLayout>

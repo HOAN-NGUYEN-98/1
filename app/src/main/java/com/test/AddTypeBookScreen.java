@@ -1,4 +1,7 @@
 package com.test;
 
-public class AddTypeBookScreen {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class AddTypeBookScreen extends AppCompatActivity {
+
 }

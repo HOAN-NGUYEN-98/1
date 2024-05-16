@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.test.adapters.TypeBookAdapter;
 import com.test.api.ApiService;
-import com.test.models.Bill;
 import com.test.models.TypeBookRespone;
 import com.test.my_interface.IClickTypeBookListener;
 
@@ -69,7 +68,7 @@ public class ListTypeBookScreen extends AppCompatActivity {
 
     }
     private void onClickGoToDetail(TypeBookRespone bill) {
-        Intent intent = new Intent(this, TypeBookActivity.class);
+        Intent intent = new Intent(this, TypeBookDetailActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("object_type", bill);
         intent.putExtras(bundle);
