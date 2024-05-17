@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="15dp"
     android:background="@android:color/white"
-    tools:context=".Activity.HoaDonDetailActivity">
+    tools:context=".HoaDonDetailActivity">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,10 +55,10 @@
         android:textColor="?attr/colorError"
         android:textSize="18sp"
         android:textStyle="bold" />
-    <ListView
-        android:id="@+id/lvCart"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvCart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"></ListView>
+        android:layout_marginTop="8dp"/>
 </LinearLayout>

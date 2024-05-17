@@ -8,5 +8,4 @@ public interface IClickItemBillListener {
     void conClickItemBill(Bill bill);
 
 
-
 }
