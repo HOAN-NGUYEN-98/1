@@ -18,6 +18,10 @@ import com.test.my_interface.IClickItemBillListener;
 
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class DetailBillAdapter extends RecyclerView.Adapter<DetailBillAdapter.DetailBillViewHolder>{
     List<Bill> billList;
     private IClickItemBillListener iClickItemBillListener;
@@ -40,7 +44,17 @@ public class DetailBillAdapter extends RecyclerView.Adapter<DetailBillAdapter.De
         if (bill == null) {
             return;
         }
-        ApiService.apiService.
+        ApiService.apiService.detailBillByIdBill("").enqueue(new Callback<BillDetailRespone>() {
+            @Override
+            public void onResponse(Call<BillDetailRespone> call, Response<BillDetailRespone> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<BillDetailRespone> call, Throwable throwable) {
+
+            }
+        });
 
         //holder.imgAvatar.setImageResource(bill.getIdBill());
         holder.tvIdDetailBill.setText(bill.getIdBill());
