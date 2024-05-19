@@ -1,5 +1,6 @@
 package com.test.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,27 +50,24 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.BillViewHolder
         });
     }
 
-
     @Override
     public int getItemCount() {
         if (billList != null) {
-           return billList.size();
+            return billList.size();
         }
         return 0;
     }
 
     public class BillViewHolder extends RecyclerView.ViewHolder {
-
         private RelativeLayout layoutItem;
-        private ImageView imgAvatar;
         private TextView tvId, tvDateOfBuy;
 
         public BillViewHolder(@NonNull View itemView) {
             super(itemView);
             layoutItem = itemView.findViewById(R.id.layout_item);
-            imgAvatar = itemView.findViewById(R.id.img_avatar);
             tvId = itemView.findViewById(R.id.tv_idBill);
             tvDateOfBuy = itemView.findViewById(R.id.tv_dateOfBuy);
         }
     }
+
 }

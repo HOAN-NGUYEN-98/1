@@ -5,6 +5,10 @@ import java.io.Serializable;
 public class TypeBookRespone implements Serializable {
     String idType, nameType, describe, location;
 
+    public TypeBookRespone() {
+
+    }
+
     public String getIdType() {
         return idType;
     }

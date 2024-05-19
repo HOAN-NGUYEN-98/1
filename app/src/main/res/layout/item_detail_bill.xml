@@ -5,7 +5,8 @@
     android:id="@+id/item_detail_bill"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".BillDetailActivity">
+
+    >
 
     <ImageView
         android:id="@+id/img_avatar"

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.test.models.Bill;
 import com.test.models.BillDetailRespone;
+import com.test.models.Book;
 import com.test.models.BookRespone;
 import com.test.models.LoginBody;
 import com.test.models.LoginResp;
@@ -50,6 +51,9 @@ public interface ApiService {
     @GET("bill")
     Call<List<Bill>> getBill();
 
+    @GET("book")
+    Call<List<Book>> getListBook();
+
     @GET("detailbill/{IdBill}")
     Call<BillDetailRespone> detailBill(@Path("IdBill") String IdBill);
 
@@ -60,13 +64,14 @@ public interface ApiService {
     Call<List<TypeBookRespone>> getTypeBook();
 
     @GET("detailbill/bill/{IdBill}")
-    Call<BillDetailRespone> detailBillByIdBill(@Path("IdBill") String IdBill);
+    Call<List<BillDetailRespone>> detailBillByIdBill(@Path("IdBill") String IdBill);
     @GET("detailbill/book/{IdBook}")
-    Call<BillDetailRespone> detailBillByIdBook(@Path("IdBook") String IdBook);
+    Call<List<BillDetailRespone>> detailBillByIdBook(@Path("IdBook") String IdBook);
 
     @GET("book/type/{IdType}")
-    Call<BookRespone> detailBookByIdType(@Path("IdType") String IdType);
+    Call<List<BookRespone>> detailBookByIdType(@Path("IdType") String IdType);
 
     @GET("book/{IdBook}")
     Call<BookRespone> detailBookByID(@Path("IdBook") String IdBook);
+
 }

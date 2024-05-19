@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
         img_sach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this, ListSachActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, ListBookScreen.class);
+                startActivity(intent);
             }
         });
 

@@ -42,8 +42,8 @@ public class TypeBookAdapter  extends RecyclerView.Adapter<TypeBookAdapter.TypeB
         //holder.imgAvatar.setImageResource(bill.getIdBill());
         holder.tvId.setText(typeBookRespone.getIdType());
         holder.name.setText(typeBookRespone.getNameType());
-//        holder.location.setText(typeBookRespone.getLocation());
-//        holder.describe.setText(typeBookRespone.getDescribe());
+        holder.location.setText(typeBookRespone.getLocation());
+        holder.describe.setText(typeBookRespone.getDescribe());
         holder.layoutItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,8 +73,8 @@ public class TypeBookAdapter  extends RecyclerView.Adapter<TypeBookAdapter.TypeB
             imgAvatar = itemView.findViewById(R.id.ivIcon);
             tvId = itemView.findViewById(R.id.tvMaTheLoai);
             name = itemView.findViewById(R.id.tvTenTheLoai);
-//            location = itemView.findViewById(R.id.tvVitri);
-//            describe = itemView.findViewById(R.id.tvMota);
+            location = itemView.findViewById(R.id.tvVitri);
+            describe = itemView.findViewById(R.id.tvMoTa);
         }
     }
 }

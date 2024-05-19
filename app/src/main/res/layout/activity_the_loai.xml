@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@android:color/white"
     android:layout_margin="15dp"
-    tools:context=".ListTypeBookScreen">
+    tools:context=".AddTypeBookScreen">
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="352dp"

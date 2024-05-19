@@ -2,6 +2,8 @@ package com.test;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +24,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ListTypeBookScreen extends AppCompatActivity {
-
+    ImageView imageView;
     List<TypeBookRespone> typeBookResponeList;
     RecyclerView rcvData;
     private TypeBookAdapter typeBookAdapter;
@@ -42,6 +44,16 @@ public class ListTypeBookScreen extends AppCompatActivity {
             @Override
             public void conClickItemTypeBook(TypeBookRespone typeBookRespone) {
                 onClickGoToDetail(typeBookRespone);
+            }
+        });
+
+        imageView=findViewById(R.id.add_type);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(ListTypeBookScreen.this, AddTypeBookScreen.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

@@ -23,6 +23,9 @@
         <activity android:name=".ListBillScreen"/>
         <activity android:name=".BillDetailActivity"/>
         <activity android:name=".TypeBookDetailActivity"/>
+        <activity android:name=".AddTypeBookScreen"/>
+        <activity android:name=".ListBookScreen"/>
+        <activity android:name=".BookActivity"/>
         <activity
             android:name=".LoadingScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"

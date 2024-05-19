@@ -9,10 +9,9 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.test.adapters.BillAdapter;
 import com.test.api.ApiService;
 import com.test.models.Bill;
-import com.test.adapters.BillAdapter;
-import com.test.models.BillDetailRespone;
 import com.test.my_interface.IClickItemBillListener;
 
 import java.util.ArrayList;
@@ -45,7 +44,6 @@ public class ListBillScreen extends AppCompatActivity {
                 onClickGoToDetail(bill);
             }
         });
-
 
 
     }

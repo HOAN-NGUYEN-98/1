@@ -7,26 +7,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="50dp"
-    tool:context=".ListBillScreen">
+    tool:context=".BillDetailActivity">
+
     <TextView
-       android:text="DetailL Bill"
-        android:textColor="@color/black"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:layout_margin="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:layout_marginTop="10dp"
-        />
+        android:text="Detail Bill"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvDetailBill"
-        tool:listitem="@layout/item_detail_bill"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp"
+        tool:listitem="@layout/item_detail_bill" />
 
 
 </LinearLayout>
