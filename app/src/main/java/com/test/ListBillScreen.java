@@ -1,7 +1,9 @@
 package com.test;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,9 +30,11 @@ public class ListBillScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         billList = new ArrayList<>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_bill);
+
         rcvData = findViewById(R.id.rcvdata);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvData.setLayoutManager(linearLayoutManager);

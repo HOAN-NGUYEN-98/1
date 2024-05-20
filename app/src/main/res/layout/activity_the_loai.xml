@@ -51,7 +51,7 @@
         android:hint="Mô tả" />
 
     <LinearLayout
-        android:layout_width="352dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -60,10 +60,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="themtheloai"
+            android:layout_margin="4dp"
             android:text="Thêm" />
 
         <Button
             android:id="@+id/btnDanh"
+            android:layout_margin="4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="showtheloai"
@@ -71,6 +73,7 @@
 
         <Button
             android:id="@+id/btnHuy"
+            android:layout_margin="4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="quaylai"

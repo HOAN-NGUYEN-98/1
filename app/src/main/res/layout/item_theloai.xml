@@ -6,57 +6,109 @@
     android:padding="2dp">
 
     <ImageView
+        android:layout_marginStart="20dp"
         android:id="@+id/img_avatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_alignParentStart="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
         android:src="@drawable/bookcon" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/img_avatar"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@+id/img_avatar"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvMaTheLoai"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="id type"
-            android:textColor="@color/black"
-            android:textSize="15sp"/>
-        <TextView
-            android:id="@+id/tvTenTheLoai"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="name type"
-            android:textColor="@color/black"
-            android:textSize="15sp"/>
-        <TextView
-            android:id="@+id/tvMoTa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="describe"
-            android:textColor="@color/black"
-            android:textSize="15sp"/>
-        <TextView
-            android:id="@+id/tvVitri"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="location"
-            android:textColor="@color/black"
-            android:textSize="15sp"/>
+            android:layout_height="wrap_content">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Id type: "
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvMaTheLoai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name type: "
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvTenTheLoai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Describe: "
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvMoTa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location: "
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvVitri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+        </LinearLayout>
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/ivDelete"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_centerInParent="true"
-        android:layout_alignParentEnd="true"
-        android:src="@drawable/delete" />
+<!--    <ImageView-->
+<!--        android:id="@+id/ivDelete"-->
+<!--        android:layout_width="40dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:src="@drawable/delete" />-->
 </RelativeLayout>

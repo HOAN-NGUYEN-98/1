@@ -1,20 +1,28 @@
 package com.test.adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.test.ListTypeBookScreen;
 import com.test.R;
+import com.test.api.ApiService;
 import com.test.models.TypeBookRespone;
 import com.test.my_interface.IClickTypeBookListener;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TypeBookAdapter  extends RecyclerView.Adapter<TypeBookAdapter.TypeBookViewHolder> {
     List<TypeBookRespone> typeBookResponeList;
@@ -39,7 +47,7 @@ public class TypeBookAdapter  extends RecyclerView.Adapter<TypeBookAdapter.TypeB
         if (typeBookRespone == null) {
             return;
         }
-        //holder.imgAvatar.setImageResource(bill.getIdBill());
+
         holder.tvId.setText(typeBookRespone.getIdType());
         holder.name.setText(typeBookRespone.getNameType());
         holder.location.setText(typeBookRespone.getLocation());
@@ -53,6 +61,7 @@ public class TypeBookAdapter  extends RecyclerView.Adapter<TypeBookAdapter.TypeB
     }
 
 
+
     @Override
     public int getItemCount() {
         if (typeBookResponeList != null) {
@@ -64,13 +73,12 @@ public class TypeBookAdapter  extends RecyclerView.Adapter<TypeBookAdapter.TypeB
     public class TypeBookViewHolder extends RecyclerView.ViewHolder {
 
         private RelativeLayout layoutItem;
-        private ImageView imgAvatar;
+
         private TextView tvId, name,location,describe;
 
         public TypeBookViewHolder(@NonNull View itemView) {
             super(itemView);
             layoutItem = itemView.findViewById(R.id.layout_item_the_loai);
-            imgAvatar = itemView.findViewById(R.id.ivIcon);
             tvId = itemView.findViewById(R.id.tvMaTheLoai);
             name = itemView.findViewById(R.id.tvTenTheLoai);
             location = itemView.findViewById(R.id.tvVitri);

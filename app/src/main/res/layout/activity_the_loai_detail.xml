@@ -7,21 +7,17 @@
     android:orientation="vertical"
     android:background="@android:color/white"
     android:layout_margin="15dp"
-    tools:context=".Activity.TheLoaiDetailActivity">
+    tools:context=".TypeBookDetailActivity">
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="352dp"
         android:layout_height="70dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         app:srcCompat="@drawable/application" />
 
     <TextView
         android:id="@+id/text"
         android:layout_width="352dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:paddingTop="3dp"
         android:paddingBottom="3dp"
         android:text="SỬA THỂ LOẠI"
@@ -32,12 +28,13 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mã thể loại:"
-        />
-    <EditText
+        android:text="Mã thể loại:" />
+    <TextView
+        android:textSize="18sp"
         android:id="@+id/edMatheloai"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         />
     <TextView
         android:layout_width="match_parent"
@@ -88,5 +85,11 @@
             android:layout_weight="1"
             android:onClick="Huy"
             android:text="Quay lại" />
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Xóa" />
     </LinearLayout>
 </LinearLayout>

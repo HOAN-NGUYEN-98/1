@@ -23,6 +23,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiService {
@@ -59,7 +60,8 @@ public interface ApiService {
 
     @DELETE("detailbill/{IdBillDetail}")
     Call<BillDetailRespone> deleteDetailBill(@Path("IdBillDetail") String IdBillDetail);
-
+    @DELETE("type/{IdType}")
+    Call<TypeBookRespone> deleteType(@Path("IdType") String IdType);
     @GET("type")
     Call<List<TypeBookRespone>> getTypeBook();
 
@@ -73,5 +75,14 @@ public interface ApiService {
 
     @GET("book/{IdBook}")
     Call<BookRespone> detailBookByID(@Path("IdBook") String IdBook);
+    @PUT("book/{IdBook}")
+    Call<BookRespone> updateBook(@Body BookRespone bookRespone,@Path("IdBook") String IdBook);
+    @PUT("bill/{IdBill}")
+    Call<Bill> updateBill(@Body Bill bill,@Path("IdBill") String IdBill);
 
+    @PUT("detailbill/{IdDetailBill}")
+    Call<BillDetailRespone> updateDetailBill(@Body BillDetailRespone billDetailRespone,@Path("IdDetailBill") String IdDetailBill);
+
+    @PUT("type/{IdType}")
+    Call<TypeBookRespone> updateType(@Body TypeBookRespone typeBookRespone,@Path("IdType") String IdType);
 }

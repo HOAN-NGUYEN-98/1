@@ -7,15 +7,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tool:context=".ListBillScreen">
-    <EditText
-        android:id="@+id/edSearch"
-        android:hint=" ID Bill"
-        android:drawableStart="@drawable/smartphone"
-        android:layout_margin="15dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:maxLines="1" />
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="9"
+            android:drawableStart="@drawable/smartphone"
+            android:hint=" ID Bill"
+            android:maxLines="1" />
+
+        <Button
+            android:id="@+id/btnFindBill"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tìm" />
+        <Button
+            android:id="@+id/btnAddBill"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Thêm" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvdata"

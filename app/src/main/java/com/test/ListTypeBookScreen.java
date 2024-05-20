@@ -29,11 +29,13 @@ public class ListTypeBookScreen extends AppCompatActivity {
     RecyclerView rcvData;
     private TypeBookAdapter typeBookAdapter;
 
+    TypeBookAdapter.TypeBookViewHolder typeBookViewHolder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_the_loai);
-        typeBookResponeList=new ArrayList<>();
+        typeBookResponeList = new ArrayList<>();
         rcvData = findViewById(R.id.rcvTheLoai);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvData.setLayoutManager(linearLayoutManager);
@@ -47,16 +49,19 @@ public class ListTypeBookScreen extends AppCompatActivity {
             }
         });
 
-        imageView=findViewById(R.id.add_type);
+        imageView = findViewById(R.id.add_type);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(ListTypeBookScreen.this, AddTypeBookScreen.class);
+                Intent intent = new Intent(ListTypeBookScreen.this, AddTypeBookScreen.class);
                 startActivity(intent);
                 finish();
             }
         });
+
+
     }
+
 
     private void getListType() {
         ApiService.apiService.getTypeBook().enqueue(new Callback<List<TypeBookRespone>>() {
@@ -79,6 +84,7 @@ public class ListTypeBookScreen extends AppCompatActivity {
         super.onDestroy();
 
     }
+
     private void onClickGoToDetail(TypeBookRespone bill) {
         Intent intent = new Intent(this, TypeBookDetailActivity.class);
         Bundle bundle = new Bundle();
