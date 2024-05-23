@@ -1,41 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp">
+    android:id="@+id/layout_item_detail_bill"
+    android:padding="10dp"
+    android:layout_height="wrap_content">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
-        android:layout_toEndOf="@+id/ivIcon"
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/tvMaSach"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:textStyle="bold" />
-        <TextView
-            android:id="@+id/tvSoLuong"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="Mã sách: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvMaSach"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:gravity="center_vertical" />
-        <TextView
-            android:id="@+id/tvGiaBia"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="Số lượng: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvSoLuong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:gravity="center_vertical" />
-        <TextView
-            android:id="@+id/tvThanhTien"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="Giá bán: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvGiaBia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Thanh tien"
-            android:textStyle="bold"
-            android:gravity="center_vertical" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="Thành tiền: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvThanhTien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="Thanh tien"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
+
     <ImageView
         android:id="@+id/ivDelete"
         android:layout_width="48dp"

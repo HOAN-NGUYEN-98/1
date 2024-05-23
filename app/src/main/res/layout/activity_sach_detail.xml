@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="@android:color/white"
     android:layout_margin="15dp"
-    tools:context=".BookActivity">
+    tools:context=".activities.BookActivity">
 
     <TextView
         android:id="@+id/text"
@@ -24,14 +24,26 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mã sách:"
-        />
-    <EditText
+        android:text="Mã sách:" />
+    <TextView
+        android:textSize="18sp"
         android:id="@+id/edMaSachsua"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Mã sách" />
-
+        android:text="Mã thể loại:" />
+    <TextView
+        android:textSize="18sp"
+        android:id="@+id/edMa_the_loai"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -105,6 +117,13 @@
             android:layout_weight="1"
             android:onClick="quaysua"
             android:text="Quay lại" />
+        <Button
+            android:id="@+id/btn_xoa_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="quaysua"
+            android:text="Xóa" />
     </LinearLayout>
 
 </LinearLayout>

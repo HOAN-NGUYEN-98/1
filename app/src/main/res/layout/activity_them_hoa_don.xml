@@ -6,12 +6,12 @@
     android:orientation="vertical"
     android:background="@android:color/white"
     android:padding="15dp"
-    tools:context=".Activity.ThemHoaDonActivity">
+    tools:context=".activities.AddBillActivity">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Mã hoá đơn"
-        android:id="@+id/edMaHoaDon"
+        android:id="@+id/edt_id_bill"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,8 +21,8 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="DD-MM-YYYY"
-            android:id="@+id/edNgayMua"
+            android:hint="YYYY-MM-DD"
+            android:id="@+id/edt_date_buy"
             android:layout_weight="5"
             android:textSize="18dp"/>
         <Button
@@ -33,10 +33,11 @@
             android:text="Chọn"
             android:onClick="datePicker"/>
     </LinearLayout>
+
     <Button
-        android:id="@+id/btnADDHoaDon"
+        android:id="@+id/btn_them_hoa_don"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Chọn"
-        android:onClick="ADDHoaDon"/>
+        android:onClick="ADDHoaDon"
+        android:text="Thêm" />
 </LinearLayout>

@@ -3,63 +3,219 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical"
     android:padding="15dp"
-    android:background="@android:color/white"
-    tools:context=".HoaDonDetailActivity">
-    <EditText
-        android:hint="Mã hóa đơn"
+    tools:context=".activities.AddDetailBillActivity">
+
+    <LinearLayout
+        android:paddingTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/edMaHoaDon"
-        />
-    <EditText
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="Mã hóa đơn"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/edMaHoaDon"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/edMaSach"
-        android:hint="Mã sách"
-        />
-    <EditText
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="Mã hóa đơn chi tiết"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/tv_ma_hoa_don_chi_tiet"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/edSoLuongMua"
-        android:hint="Số Lượng"
-        android:inputType="number"
-        />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="224dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="Mã sách"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/edMaSach"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_load_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Giá" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingBottom="10dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="185dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:text="Đơn giá"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_don_gia"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="Số lượng"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/edSoLuongMua"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textSize="20sp" />
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="2"
-        >
+        android:weightSum="2">
+
         <Button
+            android:id="@+id/btn_buy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Thêm"
-            android:onClick="ADDHoaDonCHITIET"
-            />
+            android:text="Thanh toán"
+            android:textSize="15sp" />
+
         <Button
+            android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Thanh Toán"
-            android:onClick="thanhToanHoaDon"
-            />
+            android:text="Quay lại"
+            android:textSize="15sp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvThanhTien"
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="horizontal">-->
+
+    <!--        <TextView-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="Mã sách:"-->
+    <!--            android:textColor="?attr/colorError"-->
+    <!--            android:textSize="18sp"-->
+    <!--            android:textStyle="bold" />-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/tv_ma_sach_res"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:textSize="18sp" />-->
+    <!--    </LinearLayout>-->
+
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="horizontal">-->
+
+    <!--        <TextView-->
+
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="Đơn giá:"-->
+    <!--            android:textColor="?attr/colorError"-->
+    <!--            android:textSize="18sp"-->
+    <!--            android:textStyle="bold" />-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/tv_donGia_res"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:textSize="18sp" />-->
+    <!--    </LinearLayout>-->
+
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="horizontal">-->
+
+    <!--        <TextView-->
+
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="Số lượng:"-->
+    <!--            android:textColor="?attr/colorError"-->
+    <!--            android:textSize="18sp"-->
+    <!--            android:textStyle="bold" />-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/tv_so_luong_res"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:textSize="18sp" />-->
+    <!--    </LinearLayout>-->
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Thành tiền:"
-        android:textColor="?attr/colorError"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcvCart"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"/>
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thành tiền:"
+            android:textColor="?attr/colorError"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_thanh_tien_res"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp" />
+    </LinearLayout>
+
 </LinearLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
     <ImageView
         android:id="@+id/clover"
         android:layout_width="wrap_content"
@@ -108,12 +108,11 @@
                 android:layout_marginRight="50dp"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <ImageView
                     android:id="@+id/img_thongKe"
                     android:layout_width="90dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_height="90dp"
                     android:src="@drawable/analytics" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -135,18 +134,18 @@
                 android:layout_marginRight="50dp"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <ImageView
                     android:id="@+id/img_Sach"
                     android:layout_width="100dp"
                     android:layout_height="80dp"
-                    android:layout_marginStart="12dp"
                     android:layout_marginBottom="4dp"
                     android:src="@drawable/bookicon" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sách"
-                    android:layout_marginStart="12dp"
                     android:textColor="#0E1843"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -187,14 +186,12 @@
                     android:id="@+id/img_sachBC"
                     android:layout_width="100dp"
                     android:layout_height="80dp"
-                    android:layout_marginStart="12dp"
                     android:layout_marginBottom="4dp"
                     android:src="@drawable/crime" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sách bán chạy"
-                    android:layout_marginStart="12dp"
                     android:textColor="#0E1843"
                     android:textSize="15sp" />
             </LinearLayout>

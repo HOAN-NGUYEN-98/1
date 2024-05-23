@@ -1,4 +1,4 @@
-package com.test;
+package com.test.activities;
 
 import android.os.Bundle;
 import android.widget.TextView;
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.test.R;
 import com.test.adapters.BillAdapter;
 import com.test.adapters.BillDetailAdapter;
 import com.test.api.ApiService;
@@ -37,8 +38,6 @@ public class BillDetailActivity extends AppCompatActivity {
         setContentView(R.layout.detail_bill_activitty);
         rcvData=findViewById(R.id.rcvDetailBill);
 
-
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvData.setLayoutManager(linearLayoutManager);
         getListDetailBill();
@@ -46,11 +45,6 @@ public class BillDetailActivity extends AppCompatActivity {
         rcvData.addItemDecoration(itemDecoration);//nhin dep hon
         billAdapter = new BillDetailAdapter(billList);
 
-//        tvId = findViewById(R.id.tv_detail_id);
-//        tvDate = findViewById(R.id.tv_detail_date);
-//        assert bill != null;
-//        tvId.setText(bill.getIdBill());
-//        tvDate.setText(bill.getDateOfBuy());
     }
 
     //when click show list detailbill
@@ -73,7 +67,7 @@ public class BillDetailActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<BillDetailRespone>> call, Throwable throwable) {
-
+                Toast.makeText(BillDetailActivity.this, "Error!", Toast.LENGTH_SHORT).show();
             }
         });
     }

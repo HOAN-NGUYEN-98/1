@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="@android:color/white"
     android:layout_margin="15dp"
-    tools:context=".Activity.ThemSachActivity">
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    tools:context=".activities.AddBookActivity">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="352dp"
         android:layout_height="70dp"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         app:srcCompat="@drawable/library" />
 
@@ -21,82 +20,80 @@
         android:id="@+id/text"
         android:layout_width="352dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:paddingTop="3dp"
         android:paddingBottom="3dp"
         android:text="THÊM SÁCH"
         android:textAlignment="center"
         android:textColor="?attr/colorError"
         android:textSize="24sp" />
+
     <EditText
-        android:id="@+id/edMaSach"
+        android:id="@+id/edt_id_book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Mã sách" />
-    <LinearLayout
+
+    <EditText
+        android:id="@+id/edt_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <Spinner
-            android:id="@+id/spnTheLoai"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="15dp"
-            android:layout_weight="4"
-            />
-    </LinearLayout>
+        android:hint="Mã thể loại"/>
+
     <EditText
-        android:id="@+id/edTenSach"
+        android:id="@+id/edt_ten_sach"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Tên sách" />
+
     <EditText
-        android:id="@+id/edTacGia"
+        android:id="@+id/edt_tac_gia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Tác giả" />
+
     <EditText
-        android:id="@+id/edNXB"
+        android:id="@+id/edt_nxb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nhà xuất bản" />
+
     <EditText
-        android:id="@+id/edGiaBia"
+        android:id="@+id/edt_gia_bia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Giá bìa" />
+
     <EditText
-        android:id="@+id/edSoLuong"
+        android:id="@+id/edt_so_luong"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Số lượng" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="2">
+
         <Button
-            android:id="@+id/btnAddBook"
+            android:id="@+id/btn_add_book"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="addBook"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:text="Lưu" />
+
         <Button
-            android:id="@+id/btnShowBook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="showBook"
-            android:text="Hiển thị sách" />
-        <Button
-            android:id="@+id/btnCancelBook"
+            android:id="@+id/btn_huy_book"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="cancel"
-            android:text="Huỷ" />
+            android:text="Hủy" />
+
+
     </LinearLayout>
 
 </LinearLayout>

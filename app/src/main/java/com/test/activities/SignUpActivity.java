@@ -1,4 +1,4 @@
-package com.test;
+package com.test.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.test.R;
 import com.test.api.ApiService;
 import com.test.models.RegisterBody;
 import com.test.models.RegisterResp;
@@ -21,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SignUpScreen extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +57,9 @@ public class SignUpScreen extends AppCompatActivity {
                 final String mk2 = password2.getText().toString();
                 final String roLe = password2.getText().toString();
                 if (ten.equals("") || phone.equals("") || mk1.equals("") || mk2.equals("") || acc.equals("")) {
-                    Toast.makeText(SignUpScreen.this, "Vui Lòng Điền Đủ Thông tin!!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "Vui Lòng Điền Đủ Thông tin!!!", Toast.LENGTH_SHORT).show();
                 } else {
-                    AlertDialog.Builder b = new AlertDialog.Builder(SignUpScreen.this);
+                    AlertDialog.Builder b = new AlertDialog.Builder(SignUpActivity.this);
                     b.setTitle("Sign Up");
                     b.setMessage("Bạn có muốn Đăng Ký?");
                     b.setIcon(R.drawable.icons8_adduser);
@@ -68,7 +69,7 @@ public class SignUpScreen extends AppCompatActivity {
                             if (mk1.equals(mk2)) {
                                 register(acc, mk1, ten,phone,roLe);
                             } else {
-                                Toast.makeText(SignUpScreen.this, "Mật Khẩu Nhập Lại Không đúng!!!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpActivity.this, "Mật Khẩu Nhập Lại Không đúng!!!", Toast.LENGTH_SHORT).show();
                                 password2.setText("");
                                 password1.setText("");
                             }
@@ -102,22 +103,22 @@ public class SignUpScreen extends AppCompatActivity {
                     public void onResponse(Call<RegisterResp> call, Response<RegisterResp> response) {
                         RegisterResp data = response.body();
                         if (data != null) {
-                            Toast.makeText(SignUpScreen.this, "Đăng kí thành công", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this, "Đăng kí thành công", Toast.LENGTH_SHORT).show();
                             OpenLogin();
                         } else {
-                                Toast.makeText(SignUpScreen.this, "Đăng kí thất bại", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpActivity.this, "Đăng kí thất bại", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<RegisterResp> call, Throwable t) {
-                        Toast.makeText(SignUpScreen.this, "Đăng kí thất bại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this, "Đăng kí thất bại", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
     public void OpenLogin() {
-        Intent intent = new Intent(SignUpScreen.this, LoginScreen.class);
+        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
         startActivity(intent);
 
     }

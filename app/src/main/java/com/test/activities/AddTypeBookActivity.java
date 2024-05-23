@@ -1,4 +1,4 @@
-package com.test;
+package com.test.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.test.R;
 import com.test.api.ApiService;
 import com.test.models.TypeBookRespone;
 
@@ -16,7 +17,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddTypeBookScreen extends AppCompatActivity {
+public class AddTypeBookActivity extends AppCompatActivity {
     EditText edtIdType, edtNameType, edtLocation, edtDescribe;
     Button add, back, list;
 
@@ -54,13 +55,13 @@ public class AddTypeBookScreen extends AppCompatActivity {
     }
 
     private void backList() {
-        Intent intent = new Intent(AddTypeBookScreen.this, ListTypeBookScreen.class);
+        Intent intent = new Intent(AddTypeBookActivity.this, ListTypeBookActivity.class);
         startActivity(intent);
         finish();
     }
 
     private void backToHome() {
-        Intent intent = new Intent(AddTypeBookScreen.this, MainActivity.class);
+        Intent intent = new Intent(AddTypeBookActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }
@@ -71,26 +72,32 @@ public class AddTypeBookScreen extends AppCompatActivity {
         String location = edtLocation.getText().toString();
         String describe = edtDescribe.getText().toString();
         TypeBookRespone typeBody = new TypeBookRespone(idType, nameType, location, describe);
-        ApiService.apiService.postType(typeBody).enqueue(new Callback<TypeBookRespone>() {
-            @Override
-            public void onResponse(Call<TypeBookRespone> call, Response<TypeBookRespone> response) {
-                TypeBookRespone res = response.body();
-                if (response.code() == 400) {
-                    Toast.makeText(AddTypeBookScreen.this, "Thêm thất bại, ID đã tồn tại !", Toast.LENGTH_SHORT).show();
-                } else {
-                    assert res != null;
-                    Toast.makeText(AddTypeBookScreen.this, "Thêm thành công !", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(AddTypeBookScreen.this,ListTypeBookScreen.class);
-                    startActivity(intent);
-                    finish();
-                }
-            }
 
-            @Override
-            public void onFailure(Call<TypeBookRespone> call, Throwable throwable) {
-                Toast.makeText(AddTypeBookScreen.this, "Thêm thất bại", Toast.LENGTH_SHORT).show();
-            }
-        });
+        if (idType.equals("") || nameType.equals("") || location.equals("") || describe.equals("")) {
+            Toast.makeText(AddTypeBookActivity.this, "Hãy nhập đủ thông tin !", Toast.LENGTH_LONG).show();
+        } else {
+            ApiService.apiService.postType(typeBody).enqueue(new Callback<TypeBookRespone>() {
+                @Override
+                public void onResponse(Call<TypeBookRespone> call, Response<TypeBookRespone> response) {
+                    TypeBookRespone res = response.body();
+                    if (response.code() == 400) {
+                        Toast.makeText(AddTypeBookActivity.this, "Thêm thất bại, ID đã tồn tại !", Toast.LENGTH_LONG).show();
+                    return;
+                    } else {
+                        assert res != null;
+                        Toast.makeText(AddTypeBookActivity.this, "Thêm thành công !", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(AddTypeBookActivity.this, ListTypeBookActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<TypeBookRespone> call, Throwable throwable) {
+                    Toast.makeText(AddTypeBookActivity.this, "Thêm thất bại", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
 

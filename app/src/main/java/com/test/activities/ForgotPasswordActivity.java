@@ -1,4 +1,4 @@
-package com.test;
+package com.test.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ForgotPassword extends AppCompatActivity {
+import com.test.R;
+
+public class ForgotPasswordActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +39,11 @@ public class ForgotPassword extends AppCompatActivity {
     }
 
     public void OpenLogin() {
-        Intent intent = new Intent(ForgotPassword.this, LoginScreen.class);
+        Intent intent = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 
     public void OpenCodeForgotPassword() {
-        Toast.makeText(ForgotPassword.this, "Liên hệ admin để lấy lại mật khẩu !!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(ForgotPasswordActivity.this, "Liên hệ admin để lấy lại mật khẩu !!", Toast.LENGTH_SHORT).show();
     }
 }

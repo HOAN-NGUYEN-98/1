@@ -41,6 +41,9 @@ public class BillDetailAdapter extends RecyclerView.Adapter<BillDetailAdapter.Bi
         holder.tvPrice.setText(bill.getPrice());
         holder.tvIdDetailBill.setText(bill.getIdDetailBill());
         holder.tvQuantity.setText(bill.getQuantitySell());
+
+
+
     }
 
     @Override
@@ -63,6 +66,8 @@ public class BillDetailAdapter extends RecyclerView.Adapter<BillDetailAdapter.Bi
             tvIdDetailBill = itemView.findViewById(R.id.tv_id_detail_bill);
             tvQuantity = itemView.findViewById(R.id.tv_quantity);
             tvPrice = itemView.findViewById(R.id.tv_price);
+
         }
     }
+
 }

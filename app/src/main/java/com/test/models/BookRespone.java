@@ -3,7 +3,7 @@ package com.test.models;
 import java.io.Serializable;
 
 public class BookRespone implements Serializable {
-    String idBook,idType,creator,name,producer,price,quantity;
+    String idBook, idType, creator, name, producer, price, quantity;
 
     public String getIdBook() {
         return idBook;
@@ -61,13 +61,14 @@ public class BookRespone implements Serializable {
         this.quantity = quantity;
     }
 
-    public BookRespone(String idBook, String idType, String creator, String name, String producer, String price, String quantity) {
+    public BookRespone(String idBook, String name,String idType,String price,String quantity,String creator,String producer) {
+
         this.idBook = idBook;
-        this.idType = idType;
-        this.creator = creator;
         this.name = name;
-        this.producer = producer;
+        this.idType = idType;
         this.price = price;
         this.quantity = quantity;
+        this.creator = creator;
+        this.producer = producer;
     }
 }

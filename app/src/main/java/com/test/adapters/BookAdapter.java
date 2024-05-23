@@ -39,13 +39,12 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         if (book == null) {
             return;
         }
-
+        holder.tvId.setText(book.getIdBook());
         holder.tvBookName.setText(book.getName());
-        holder.tvSoLuong.setText(book.getQuantity());
         holder.tvPrice.setText(book.getPrice());
-//        holder.tvId.setText(book.getIdBook());
-//        holder.tvProducer.setText(book.getProducer());
-//        holder.tvCreator.setText(book.getCreator());
+        holder.tvSoLuong.setText(book.getQuantity());
+
+
         holder.layoutItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,19 +63,18 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     public class BookViewHolder extends RecyclerView.ViewHolder {
         private RelativeLayout layoutItem;
-        private TextView tvBookName, tvSoLuong, tvPrice, tvId, tvCreator, tvProducer;
+        private TextView tvBookName, tvSoLuong, tvPrice, tvId;
 
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
 
             layoutItem = itemView.findViewById(R.id.layout_item_book);
-//            tvId = itemView.findViewById(R.id.tvBookID);
+            tvId = itemView.findViewById(R.id.tvBookID);
             tvBookName = itemView.findViewById(R.id.tvBookName);
-            tvSoLuong = itemView.findViewById(R.id.tvSoLuong);
-//            tvCreator = itemView.findViewById(R.id.tvBookCreator);
             tvPrice = itemView.findViewById(R.id.tvBookPrice);
-//            tvProducer = itemView.findViewById(R.id.tvBookProducer);
+            tvSoLuong = itemView.findViewById(R.id.tvSoLuong);
+
         }
     }
 

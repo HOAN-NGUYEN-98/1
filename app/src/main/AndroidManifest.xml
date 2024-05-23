@@ -15,19 +15,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Test"
         tools:targetApi="31">
-        <activity android:name=".LoginScreen" />
-        <activity android:name=".SignUpScreen" />
-        <activity android:name=".ForgotPassword" />
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".ListTypeBookScreen"/>
-        <activity android:name=".ListBillScreen"/>
-        <activity android:name=".BillDetailActivity"/>
-        <activity android:name=".TypeBookDetailActivity"/>
-        <activity android:name=".AddTypeBookScreen"/>
-        <activity android:name=".ListBookScreen"/>
-        <activity android:name=".BookActivity"/>
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.SignUpActivity" />
+        <activity android:name=".activities.ForgotPasswordActivity" />
+        <activity android:name=".activities.MainActivity"/>
+        <activity android:name=".activities.ListTypeBookActivity"/>
+        <activity android:name=".activities.ListBillActivity"/>
+        <activity android:name=".activities.BillDetailActivity"/>
+        <activity android:name=".activities.TypeBookDetailActivity"/>
+        <activity android:name=".activities.AddTypeBookActivity"/>
+        <activity android:name=".activities.ListBookActivity"/>
+        <activity android:name=".activities.BookActivity"/>
+        <activity android:name=".activities.AddBookActivity"/>
+        <activity android:name=".activities.AddBillActivity"/>
+        <activity android:name=".activities.AddDetailBillActivity"/>
+        <activity android:name=".activities.TotalMoneyActivity"/>
+        <activity android:name=".activities.TopBookActivity"/>
         <activity
-            android:name=".LoadingScreen"
+            android:name=".activities.LoadingActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="true">
             <intent-filter>

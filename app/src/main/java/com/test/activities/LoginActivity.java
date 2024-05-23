@@ -1,4 +1,4 @@
-package com.test;
+package com.test.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.test.R;
 import com.test.api.ApiService;
 import com.test.models.LoginBody;
 import com.test.models.LoginResp;
@@ -18,7 +19,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginScreen extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     private Button btnLogin, btnSignup, btnForgotPass;
 
     private EditText edtUserName, edtPassword;
@@ -39,7 +40,7 @@ public class LoginScreen extends AppCompatActivity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginScreen.this, SignUpScreen.class);
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 startActivity(intent);
             }
         });
@@ -66,7 +67,7 @@ public class LoginScreen extends AppCompatActivity {
         String name = edtUserName.getText().toString();
         String pass = edtPassword.getText().toString();
         if (name.isEmpty() || pass.isEmpty()) {
-            Toast.makeText(LoginScreen.this, "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
         }
         LoginBody loginBody = new LoginBody(name, pass);
@@ -76,25 +77,25 @@ public class LoginScreen extends AppCompatActivity {
                     public void onResponse(Call<LoginResp> call, Response<LoginResp> response) {
                         LoginResp res = response.body();
                         if (res != null) {
-                            Toast.makeText(LoginScreen.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginScreen.this, MainActivity.class);
+                            Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
                         } else {
-                            Toast.makeText(LoginScreen.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<LoginResp> call, Throwable t) {
-                        Toast.makeText(LoginScreen.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
 
     public void OpenForgotPassword() {
-        Toast.makeText(LoginScreen.this, "Liên hệ admin để lấy lại mật khẩu !!!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(LoginActivity.this, "Liên hệ admin để lấy lại mật khẩu !!!", Toast.LENGTH_SHORT).show();
     }
 
 

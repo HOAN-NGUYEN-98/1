@@ -1,4 +1,4 @@
-package com.test;
+package com.test.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.test.R;
 import com.test.api.ApiService;
 import com.test.models.LogoutResp;
 
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         img_theloai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ListTypeBookScreen.class);
+                Intent intent = new Intent(MainActivity.this, ListTypeBookActivity.class);
                 startActivity(intent);
             }
         });
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         img_sach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ListBookScreen.class);
+                Intent intent = new Intent(MainActivity.this, ListBookActivity.class);
                 startActivity(intent);
             }
         });
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         img_hoaDonn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ListBillScreen.class);
+                Intent intent = new Intent(MainActivity.this, ListBillActivity.class);
                 startActivity(intent);
             }
         });
@@ -75,16 +76,16 @@ public class MainActivity extends AppCompatActivity {
         img_topSach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this, ListBanChayActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, TopBookActivity.class);
+                startActivity(intent);
             }
         });
 
         img_TK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this, ListThongKeActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, TotalMoneyActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<LogoutResp> call, Response<LogoutResp> response) {
                         Toast.makeText(MainActivity.this, "Đăng xuất thành công", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(MainActivity.this, LoginScreen.class);
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
                     }

@@ -1,8 +1,11 @@
 package com.test.models;
 
-import java.io.Serializable;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class Bill implements Serializable {
+import java.io.Serializable;
+import java.util.Date;
+
+public class Bill extends RecyclerView.ItemDecoration implements Serializable {
    String idBill, dateOfBuy;
 
     public Bill(String idBill, String dateOfBuy) {
