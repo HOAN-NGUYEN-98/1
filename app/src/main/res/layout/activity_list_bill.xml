@@ -7,6 +7,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tool:context=".activities.ListBillActivity">
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:text="DANH SÁCH HÓA ĐƠN"
+        android:textAlignment="center"
+        android:textColor="?attr/colorError"
+        android:textSize="24sp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

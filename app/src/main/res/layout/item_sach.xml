@@ -31,7 +31,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ID: "
+                android:text="Mã sách: "
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -50,7 +50,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name: "
+                android:text="Tên sách: "
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -69,8 +69,8 @@
             <TextView
 
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Price: "
+                android:layout_height="match_parent"
+                android:text="Giá bán: "
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -90,7 +90,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Quantity: "
+                android:text="Số lượng: "
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
