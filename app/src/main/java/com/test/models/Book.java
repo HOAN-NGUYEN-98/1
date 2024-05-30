@@ -3,6 +3,15 @@ package com.test.models;
 import java.io.Serializable;
 
 public class Book implements Serializable {
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
+
+    private boolean isChecked = false;
     String idBook, idType, name, creator, producer, price, quantity;
 
     public String getIdBook() {
@@ -69,5 +78,6 @@ public class Book implements Serializable {
         this.producer = producer;
         this.price = price;
         this.quantity = quantity;
+
     }
 }

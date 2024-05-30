@@ -42,15 +42,18 @@ public class ListBookActivity extends AppCompatActivity {
         bookList = new ArrayList<>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_sach);
+        btnAddBook = findViewById(R.id.btnAddBook);
+        search = findViewById(R.id.btnTim);
+        edT = findViewById(R.id.edSearchBook);
         rcvdata = findViewById(R.id.rcvBook);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvdata.setLayoutManager(linearLayoutManager);
         getListBook();
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         rcvdata.addItemDecoration(itemDecoration);//nhin dep hon
-        btnAddBook = findViewById(R.id.btnAddBook);
-        search = findViewById(R.id.btnTim);
-        edT = findViewById(R.id.edSearchBook);
+
+
         btnAddBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

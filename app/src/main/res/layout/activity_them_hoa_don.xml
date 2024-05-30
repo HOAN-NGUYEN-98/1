@@ -3,41 +3,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@android:color/white"
+    android:orientation="vertical"
     android:padding="15dp"
     tools:context=".activities.AddBillActivity">
+
     <EditText
+        android:id="@+id/edt_id_bill"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Mã hoá đơn"
-        android:id="@+id/edt_id_bill"
-        />
+        android:hint="Mã hoá đơn" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="5">
+
         <EditText
+            android:id="@+id/edt_date_buy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="YYYY-MM-DD"
-            android:id="@+id/edt_date_buy"
             android:layout_weight="5"
-            android:textSize="18dp"/>
+            android:hint="YYYY-MM-DD"
+            android:textSize="18dp" />
+
         <Button
             android:id="@+id/picDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Chọn"
-            android:onClick="datePicker"/>
+            android:onClick="datePicker"
+            android:text="Chọn" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_them_hoa_don"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="ADDHoaDon"
-        android:text="Thêm" />
+        android:paddingStart="150dp">
+
+        <Button
+            android:id="@+id/btn_them_hoa_don"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="ADDHoaDon"
+            android:text="Thêm" />
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvData_book"
+        tools:listitem="@layout/item_sach"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

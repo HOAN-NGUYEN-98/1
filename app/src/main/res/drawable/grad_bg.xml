@@ -3,8 +3,8 @@
 
     <gradient
         android:angle="0"
-        android:endColor="@color/cardview_shadow_end_color"
-        android:startColor="@color/cardview_shadow_start_color"
+        android:endColor="@color/gradStop"
+        android:startColor="@color/gradStart"
         android:type="linear" />
 
 </shape>
