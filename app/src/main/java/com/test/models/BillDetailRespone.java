@@ -1,25 +1,10 @@
 package com.test.models;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class BillDetailRespone implements Serializable {
-    public String idDetailBill, idBook, idBill, quantitySell, price;
-
-    public String getIdDetailBill() {
-        return idDetailBill;
-    }
-
-    public void setIdDetailBill(String idDetailBill) {
-        this.idDetailBill = idDetailBill;
-    }
-
-    public String getIdBook() {
-        return idBook;
-    }
-
-    public void setIdBook(String idBook) {
-        this.idBook = idBook;
-    }
+    public String idBill,dateOfBuy, quantitySell, Total;
 
     public String getIdBill() {
         return idBill;
@@ -27,6 +12,14 @@ public class BillDetailRespone implements Serializable {
 
     public void setIdBill(String idBill) {
         this.idBill = idBill;
+    }
+
+    public String getDateOfBuy() {
+        return dateOfBuy;
+    }
+
+    public void setDateOfBuy(String dateOfBuy) {
+        this.dateOfBuy = dateOfBuy;
     }
 
     public String getQuantitySell() {
@@ -37,19 +30,21 @@ public class BillDetailRespone implements Serializable {
         this.quantitySell = quantitySell;
     }
 
-    public String getPrice() {
-        return price;
+    public String getTotal() {
+        return Total;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setTotal(String total) {
+        Total = total;
     }
 
-    public BillDetailRespone(String idDetailBill, String idBook, String idBill, String quantitySell, String price) {
-        this.idDetailBill = idDetailBill;
-        this.idBook = idBook;
-        this.idBill = idBill;
-        this.quantitySell = quantitySell;
-        this.price = price;
+    public List<Book> getBookList() {
+        return bookList;
     }
+
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
+    }
+
+    List<Book> bookList;
 }

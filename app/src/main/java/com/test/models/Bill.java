@@ -6,7 +6,46 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Bill extends RecyclerView.ItemDecoration implements Serializable {
-   String idBill, dateOfBuy;
+    String idBill;
+    String dateOfBuy;
+    String nameBook;
+    String price;
+    String quantitySell;
+    String idBook;
+
+    public String getIdBook() {
+        return idBook;
+    }
+
+    public void setIdBook(String idBook) {
+        this.idBook = idBook;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getQuantitySell() {
+        return quantitySell;
+    }
+
+    public void setQuantitySell(String quantitySell) {
+        this.quantitySell = quantitySell;
+    }
+
+
+    public String getNameBook() {
+        return nameBook;
+    }
+
+    public void setNameBook(String nameBook) {
+        this.nameBook = nameBook;
+    }
+
 
     public Bill(String idBill, String dateOfBuy) {
         this.idBill = idBill;

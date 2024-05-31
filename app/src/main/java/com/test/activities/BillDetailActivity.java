@@ -26,7 +26,7 @@ import retrofit2.Response;
 
 public class BillDetailActivity extends AppCompatActivity {
     TextView tvId, tvDate;
-    List<BillDetailRespone> billList;
+    ArrayList<BillDetailRespone> billList;
     RecyclerView rcvData;
     private BillDetailAdapter billAdapter;
 
@@ -34,7 +34,6 @@ public class BillDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         billList = new ArrayList<>();
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.detail_activity_bill);
         setContentView(R.layout.detail_bill_activitty);
         rcvData=findViewById(R.id.rcvDetailBill);
 
@@ -43,7 +42,7 @@ public class BillDetailActivity extends AppCompatActivity {
         getListDetailBill();
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         rcvData.addItemDecoration(itemDecoration);//nhin dep hon
-        billAdapter = new BillDetailAdapter(billList);
+        billAdapter = new BillDetailAdapter(this,billList);
 
     }
 

@@ -1,10 +1,13 @@
 package com.test.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,62 +15,69 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.test.R;
 import com.test.models.Bill;
 import com.test.models.BillDetailRespone;
+import com.test.models.Book;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class BillDetailAdapter extends RecyclerView.Adapter<BillDetailAdapter.BillDetailViewHolder> {
-    List<BillDetailRespone> billList;
+public class BillDetailAdapter extends RecyclerView.Adapter<BillDetailAdapter.DetailViewHolder> {
+    private Context context;
+    private ArrayList<BillDetailRespone> books;
 
-    public BillDetailAdapter(List<BillDetailRespone> billList) {
-        this.billList = billList;
+    public BillDetailAdapter(Context context, ArrayList<BillDetailRespone> books) {
+        this.context = context;
+        this.books = books;
+    }
+
+    public void setEmployees(ArrayList<BillDetailRespone> employees) {
+        this.books = employees;
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public BillDetailAdapter.BillDetailViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_detail_bill, parent, false);
-        return new BillDetailAdapter.BillDetailViewHolder(view);
+    public BillDetailAdapter.DetailViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_sach, viewGroup, false);
+        return new BillDetailAdapter.DetailViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BillDetailAdapter.BillDetailViewHolder holder, int position) {
-        final BillDetailRespone bill = billList.get(position);
-        if (bill == null) {
-            return;
-        }
-        //holder.imgAvatar.setImageResource(bill.getIdBill());
-        holder.tvIdBill.setText(bill.getIdBill());
-        holder.tvIdBook.setText(bill.getIdBook());
-        holder.tvPrice.setText(bill.getPrice());
-        holder.tvIdDetailBill.setText(bill.getIdDetailBill());
-        holder.tvQuantity.setText(bill.getQuantitySell());
-
-
-
+    public void onBindViewHolder(@NonNull BillDetailAdapter.DetailViewHolder multiViewHolder, int position) {
+        multiViewHolder.bind(books.get(position));
     }
 
     @Override
     public int getItemCount() {
-        if (billList != null) {
-            return billList.size();
-        }
-        return 0;
+        return books.size();
     }
 
-    public class BillDetailViewHolder extends RecyclerView.ViewHolder {
-        private RelativeLayout layoutItem;
-        private TextView tvIdBook, tvQuantity,tvIdBill,tvIdDetailBill,tvPrice;
+    class DetailViewHolder extends RecyclerView.ViewHolder {
+        TextView tvQ;
+        private TextView textView, tvPrice, tvQuantity, textViewId;
+        private ImageView imageView, imgAdd, imgMinus;
 
-        public BillDetailViewHolder(@NonNull View itemView) {
+        DetailViewHolder(@NonNull View itemView) {
             super(itemView);
-            layoutItem = itemView.findViewById(R.id.item_detail_bill);
-            tvIdBook = itemView.findViewById(R.id.tv_id_book);
-            tvIdBill = itemView.findViewById(R.id.tv_id_bill);
-            tvIdDetailBill = itemView.findViewById(R.id.tv_id_detail_bill);
-            tvQuantity = itemView.findViewById(R.id.tv_quantity);
-            tvPrice = itemView.findViewById(R.id.tv_price);
+            textViewId = itemView.findViewById(R.id.tvBookID);
+            textView = itemView.findViewById(R.id.tvBookName);
+            tvPrice = itemView.findViewById(R.id.tvBookPrice);
+            tvQuantity = itemView.findViewById(R.id.tvSoLuong);
+            imageView = itemView.findViewById(R.id.imageView_tick);
+            imgAdd = itemView.findViewById(R.id.add_quan);
+            imgMinus = itemView.findViewById(R.id.minus_quan);
+            tvQ = itemView.findViewById(R.id.change_quantity);
+        }
+
+        void bind(final BillDetailRespone billDetailRespone) {
+
+
+
 
         }
+    }
+
+    public ArrayList<BillDetailRespone> getAll() {
+        return books;
     }
 
 }

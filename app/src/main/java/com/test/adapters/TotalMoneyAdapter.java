@@ -1,6 +1,7 @@
 package com.test.adapters;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.test.R;
+import com.test.models.Bill;
 import com.test.models.Book;
 
 import java.util.ArrayList;
@@ -64,6 +66,21 @@ public class TotalMoneyAdapter extends RecyclerView.Adapter<TotalMoneyAdapter.Mu
             tvPrice.setText(String.valueOf(employee.getPrice()));
             tvQuantity.setText(String.valueOf(employee.getQuantity()));
             textView.setText(employee.getName());
+
+
+            String name=employee.getName();
+            String price=String.valueOf(employee.getPrice());
+            String quan=String.valueOf(employee.getQuantity());
+
+//            Bundle bundle = getIntent().getExtras();
+//            if (bundle == null) {
+//                return;
+//            }
+//            Bill bill = (Bill) bundle.get("object_bill");
+//            assert bill != null;
+
+
+
             int pr = Integer.parseInt(String.valueOf(employee.getPrice()));
             int qu = Integer.parseInt(String.valueOf(employee.getQuantity()));
             int total = pr * qu;

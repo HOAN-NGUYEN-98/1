@@ -81,6 +81,10 @@ public interface ApiService {
 //    Call<List<BookRespone>> detailBookByIdType(@Path("IdType") String IdType);
 
 // api bill
+    @GET("bill/total")
+    Call<TotalMoney> totalMoney();
+    @GET("bill/top")
+    Call<List<TopBook>> topBook();
     @GET("bill")
     Call<List<Bill>> getBill();
     @GET("bill/{id}")
@@ -93,11 +97,7 @@ public interface ApiService {
 
 // api detail bill
 
-    @GET("detailbill/total")
-    Call<TotalMoney> totalMoney();
 
-    @GET("detailbill/top")
-    Call<List<TopBook>> topBook();
     @GET("detailbill/{IdBill}")
     Call<BillDetailRespone> detailBill(@Path("IdBill") String IdBill);
 

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.test.R;
 import com.test.adapters.TopBookAdapter;
 import com.test.api.ApiService;
+import com.test.models.Bill;
 import com.test.models.TopBook;
 
 import java.util.ArrayList;
@@ -31,13 +32,12 @@ public class TopBookActivity extends AppCompatActivity {
     RecyclerView rcvData;
     TopBookAdapter adapter;
 
-    List<TopBook> top; ;
+    List<TopBook> top;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_ban_chay);
         rcvData = findViewById(R.id.lvBookTop);
-//        btnTim=findViewById(R.id.viewsach);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvData.setLayoutManager(linearLayoutManager);
         getList();
@@ -45,12 +45,6 @@ public class TopBookActivity extends AppCompatActivity {
         rcvData.addItemDecoration(itemDecoration);//nhin dep hon
         adapter = new TopBookAdapter(top);
 
-//        btnTim.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //findTop();
-//            }
-//        });
     }
 
 
@@ -70,14 +64,6 @@ public class TopBookActivity extends AppCompatActivity {
             }
         });
     }
-
-//    private void findTop() {
-//        ApiService.apiService.
-//        setContentView(R.layout.item_top_book);
-//        tvId =findViewById(R.id.tvBookIDTop);
-//        tvName=findViewById(R.id.tvBookNameTop);
-//        tvQuan=findViewById(R.id.tvSoLuongTop);
-//    }
 
 
 }

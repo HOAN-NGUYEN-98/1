@@ -23,6 +23,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     public BookAdapter(List<Book> bookList, IClickBookListener listener) {
         this.iClickBookListener = listener;
+
         this.bookList = bookList;
     }
 
@@ -30,6 +31,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     @Override
     public BookAdapter.BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sach, parent, false);
+
         return new BookAdapter.BookViewHolder(view);
     }
 
@@ -43,7 +45,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         holder.tvBookName.setText(book.getName());
         holder.tvPrice.setText(book.getPrice());
         holder.tvSoLuong.setText(book.getQuantity());
-
+        holder.tvQ.setVisibility(book.isChecked() ? View.VISIBLE : View.GONE);
 
         holder.layoutItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,11 +66,11 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     public class BookViewHolder extends RecyclerView.ViewHolder {
         private RelativeLayout layoutItem;
         private TextView tvBookName, tvSoLuong, tvPrice, tvId;
-
+        TextView tvQ;
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            tvQ = itemView.findViewById(R.id.change_quantity);
             layoutItem = itemView.findViewById(R.id.layout_item_book);
             tvId = itemView.findViewById(R.id.tvBookID);
             tvBookName = itemView.findViewById(R.id.tvBookName);
