@@ -72,13 +72,6 @@ public class TotalMoneyAdapter extends RecyclerView.Adapter<TotalMoneyAdapter.Mu
             String price=String.valueOf(employee.getPrice());
             String quan=String.valueOf(employee.getQuantity());
 
-//            Bundle bundle = getIntent().getExtras();
-//            if (bundle == null) {
-//                return;
-//            }
-//            Bill bill = (Bill) bundle.get("object_bill");
-//            assert bill != null;
-
 
 
             int pr = Integer.parseInt(String.valueOf(employee.getPrice()));
