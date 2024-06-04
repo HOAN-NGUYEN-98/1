@@ -133,8 +133,6 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
     }
 
     public void multiClick() {
-
-
         String id=edt_IdBill.getText().toString();
         String date=edt_CreateDate.getText().toString();
         setContentView(R.layout.activity_thanh_toan);
