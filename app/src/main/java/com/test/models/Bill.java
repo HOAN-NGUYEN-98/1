@@ -7,6 +7,7 @@ import java.util.Date;
 
 public class Bill extends RecyclerView.ItemDecoration implements Serializable {
     String idBill;
+    String dateOfBuy;
 
     public String getIdBill() {
         return idBill;
@@ -24,7 +25,7 @@ public class Bill extends RecyclerView.ItemDecoration implements Serializable {
         this.dateOfBuy = dateOfBuy;
     }
 
-    String dateOfBuy;
+
 
 
 
