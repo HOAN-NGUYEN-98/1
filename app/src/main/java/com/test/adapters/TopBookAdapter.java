@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.test.R;
+import com.test.models.Bill;
 import com.test.models.TopBook;
 import com.test.my_interface.IClickItemBillListener;
 
@@ -38,12 +39,7 @@ public class TopBookAdapter extends RecyclerView.Adapter<TopBookAdapter.TopBookV
         holder.tvId.setText(bill.getIdBook());
         holder.tvName.setText(bill.getNameBook());
         holder.tvQuan.setText(bill.getQuantity());
-//        holder.layoutItem.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                iClickItemBillListener.conClickItemBill(bill);
-//            }
-//        });
+
     }
 
     @Override

@@ -27,7 +27,6 @@ public class MultiAdapterBook extends RecyclerView.Adapter<MultiAdapterBook.Mult
         this.books = books;
     }
 
-
     public void setEmployees(ArrayList<Book> employees) {
         this.books = employees;
         notifyDataSetChanged();
@@ -88,7 +87,6 @@ public class MultiAdapterBook extends RecyclerView.Adapter<MultiAdapterBook.Mult
                     imgAdd.setVisibility(book.isChecked() ? View.VISIBLE : View.GONE);
                     imgMinus.setVisibility(book.isChecked() ? View.VISIBLE : View.GONE);
                     tvQ.setVisibility(book.isChecked() ? View.VISIBLE : View.GONE);
-                    
                     if(tvQ.getText().toString().equals("0")){
                         Toast.makeText(context, "Nhập số lượng mua", Toast.LENGTH_SHORT).show();
                     }
@@ -97,7 +95,6 @@ public class MultiAdapterBook extends RecyclerView.Adapter<MultiAdapterBook.Mult
                         int chane;
                         @Override
                         public void onClick(View v) {
-
                             chane = Integer.parseInt(tvQ.getText().toString());
                             chane++;
                             tvQ.setText(String.valueOf(chane));
@@ -119,12 +116,8 @@ public class MultiAdapterBook extends RecyclerView.Adapter<MultiAdapterBook.Mult
                             imgMinus.setVisibility(View.VISIBLE);
                         }
                     });
-
                 }
-
             });
-
-
         }
     }
 

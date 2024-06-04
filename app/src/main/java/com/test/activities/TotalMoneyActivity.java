@@ -33,9 +33,10 @@ public class TotalMoneyActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<TotalMoney> call, Response<TotalMoney> response) {
                 TotalMoney totalMoney = response.body();
-                tvDate.setText(totalMoney.getDateSum());
-                tvMonth.setText(totalMoney.getMonthSum());
-                tvYear.setText(totalMoney.getYearSum());
+                assert totalMoney != null;
+                tvDate.setText(String.valueOf(totalMoney.getDateSum()));
+                tvMonth.setText(String.valueOf(totalMoney.getMonthSum()));
+                tvYear.setText(String.valueOf(totalMoney.getYearSum()));
 
             }
 
