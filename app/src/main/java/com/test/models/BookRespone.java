@@ -61,9 +61,8 @@ public class BookRespone implements Serializable {
         this.quantity = quantity;
     }
 
-    public BookRespone(String idBook, String name,String idType,String price,String quantity,String creator,String producer) {
+    public BookRespone( String name,String idType,String price,String quantity,String creator,String producer) {
 
-        this.idBook = idBook;
         this.name = name;
         this.idType = idType;
         this.price = price;

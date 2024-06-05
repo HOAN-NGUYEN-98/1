@@ -21,14 +21,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AddBookActivity extends AppCompatActivity {
-    EditText id, nameB, priceB, quan, prod, crea, type;
+   // EditText id;
+    EditText nameB, priceB, quan, prod, crea, type;
     Button btnAddBook, btnCancel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_them_sach);
-        id = findViewById(R.id.edt_id_book);
+        //id = findViewById(R.id.edt_id_book);
         nameB = findViewById(R.id.edt_ten_sach);
         priceB = findViewById(R.id.edt_gia_bia);
         quan = findViewById(R.id.edt_so_luong);
@@ -62,7 +63,7 @@ public class AddBookActivity extends AppCompatActivity {
 
 
     private void addBook() {
-        String idBook = id.getText().toString();
+       // String idBook = id.getText().toString();
         String name = nameB.getText().toString();
         String idType = type.getText().toString();
         String price = priceB.getText().toString();
@@ -71,8 +72,8 @@ public class AddBookActivity extends AppCompatActivity {
         String producer = prod.getText().toString();
 
 
-        BookRespone bookRespone = new BookRespone(idBook, name, idType, price, quantity, creator, producer);
-        if (idBook.equals("") || name.equals("") || idType.equals("") || price.equals("") || quantity.equals("") || creator.equals("") || producer.equals("")) {
+        BookRespone bookRespone = new BookRespone( name, idType, price, quantity, creator, producer);
+        if (name.equals("") || idType.equals("") || price.equals("") || quantity.equals("") || creator.equals("") || producer.equals("")) {
             Toast.makeText(AddBookActivity.this, "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
         } else {
             ApiService.apiService.addBook(bookRespone).enqueue(new Callback<BookRespone>() {

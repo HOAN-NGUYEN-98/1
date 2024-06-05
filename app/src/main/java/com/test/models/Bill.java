@@ -3,11 +3,17 @@ package com.test.models;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.ArrayList;
 
 public class Bill extends RecyclerView.ItemDecoration implements Serializable {
-    String idBill;
-    String dateOfBuy;
+    public String idBill;
+    public  String dateOfBuy;
+    public ArrayList<Detail> detailList;
+
+    public Bill( String dateOfBuy, ArrayList<Detail> detailList) {
+        this.dateOfBuy = dateOfBuy;
+        this.detailList = detailList;
+    }
 
     public String getIdBill() {
         return idBill;
@@ -25,8 +31,11 @@ public class Bill extends RecyclerView.ItemDecoration implements Serializable {
         this.dateOfBuy = dateOfBuy;
     }
 
+    public ArrayList<Detail> getDetailList() {
+        return detailList;
+    }
 
-
-
-
+    public void setDetailList(ArrayList<Detail> detailList) {
+        this.detailList = detailList;
+    }
 }

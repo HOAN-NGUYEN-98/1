@@ -2,9 +2,7 @@ package com.test.activities;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
-import android.net.ParseException;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,20 +14,18 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.test.R;
-import com.test.adapters.BookAdapter;
 import com.test.adapters.MultiAdapterBook;
 import com.test.adapters.TotalMoneyAdapter;
 import com.test.api.ApiService;
 import com.test.models.Bill;
+import com.test.models.Detail;
 import com.test.models.Book;
-import com.test.my_interface.IClickBookListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -46,7 +42,8 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
     RecyclerView rcvData;
     private MultiAdapterBook adapter;
     private Button btnGetSelected;
-    EditText edt_IdBill, edt_CreateDate;
+    //EditText edt_IdBill;
+    EditText edt_CreateDate;
     Button btn_SelectDate;
     ArrayList<Book> bookList;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -57,7 +54,7 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_them_hoa_don);
         edt_CreateDate = findViewById(R.id.edt_date_buy);
-        edt_IdBill = findViewById(R.id.edt_id_bill);
+       // edt_IdBill = findViewById(R.id.edt_id_bill);
 
         btn_SelectDate = findViewById(R.id.picDate);
         rcvData = findViewById(R.id.rcvData_book);
@@ -133,23 +130,50 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
     }
 
     public void multiClick() {
-        String id=edt_IdBill.getText().toString();
+        //String id=edt_IdBill.getText().toString();
         String date=edt_CreateDate.getText().toString();
+
         setContentView(R.layout.activity_thanh_toan);
         tv_TongThanhToan = findViewById(R.id.textViewTongThanhToan);
         rcvData = findViewById(R.id.recyclerView_Data);
         tvDate=findViewById(R.id.textViewDateCreate);
-        tvID=findViewById(R.id.textViewIDBill);
+       // tvID=findViewById(R.id.textViewIDBill);
         int tt;
         List<Integer> numbers = new ArrayList<>();
         for (int i = 0; i < adapter.getSelected().size(); i++) {
 
             ArrayList<Book> empppp = adapter.getSelected();
-            tvID.setText(id);
+            //tvID.setText(id);
             tvDate.setText(date);
 
             int pr = Integer.parseInt(empppp.get(i).getPrice());
             int qu = Integer.parseInt(empppp.get(i).getQuantity());
+            int idBook= Integer.parseInt(empppp.get(i).getIdBook());
+
+
+
+
+
+            Detail detail =new Detail(idBook,qu);
+            String dateOfBuy=tvDate.getText().toString();
+
+            ArrayList<Detail> list=new ArrayList<>();
+            list.add(detail);
+            Bill bill=new Bill(dateOfBuy,list);
+            ApiService.apiService.postBill(bill).enqueue(new Callback<Bill>() {
+                @Override
+                public void onResponse(Call<Bill> call, Response<Bill> response) {
+                    Bill bill1=response.body();
+                    assert bill1 != null;
+                    String s = bill1.getIdBill();
+                }
+
+                @Override
+                public void onFailure(Call<Bill> call, Throwable throwable) {
+                    Toast.makeText(AddBillActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                }
+            });
+
             tt = pr * qu;
             numbers.add(tt);
             int sum = 0;
@@ -159,14 +183,10 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
             }
 
             // Tạo một adapter mới với list các item được chọn
-
             TotalMoneyAdapter selectedItemsAdapter = new TotalMoneyAdapter(this, empppp);
             rcvData.setLayoutManager(new LinearLayoutManager(this));
             rcvData.setAdapter(selectedItemsAdapter);
         }
-
-
-
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.test.models.Bill;
 import com.test.models.BillDetailRespone;
 import com.test.models.Book;
 import com.test.models.BookRespone;
+import com.test.models.Detail;
 import com.test.models.LoginBody;
 import com.test.models.LoginResp;
 import com.test.models.LogoutResp;
@@ -94,6 +95,9 @@ public interface ApiService {
 
     @POST("bill")
     Call<Bill> postBill(@Body Bill bill);
+
+//    @POST("bill")
+//    Call<List<Detail>> postDetailBill(@Body List<Detail> detail);
 
 // api detail bill
 

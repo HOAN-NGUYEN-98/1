@@ -118,7 +118,7 @@ public class BookActivity extends AppCompatActivity {
         String quantity = tvQuantity.getText().toString();
         String creator = tvCreator.getText().toString();
         String producer = tvProducer.getText().toString();
-        BookRespone bookRespone = new BookRespone(idBook, name, idType, price, quantity, creator, producer);
+        BookRespone bookRespone = new BookRespone(name, idType, price, quantity, creator, producer);
         if (name.equals("") || price.equals("") || quantity.equals("") || creator.equals("") || producer.equals("")) {
             Toast.makeText(BookActivity.this, "Vui lòng nhập đủ thông tin!", Toast.LENGTH_SHORT).show();
         } else {

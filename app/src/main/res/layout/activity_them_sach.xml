@@ -27,11 +27,11 @@
         android:textColor="?attr/colorError"
         android:textSize="24sp" />
 
-    <EditText
-        android:id="@+id/edt_id_book"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Mã sách" />
+<!--    <EditText-->
+<!--        android:id="@+id/edt_id_book"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Mã sách" />-->
 
     <EditText
         android:id="@+id/edt_type"

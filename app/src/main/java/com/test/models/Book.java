@@ -12,7 +12,8 @@ public class Book implements Serializable {
     }
 
     private boolean isChecked = false;
-    String idBook, idType, name, creator, producer, price, quantity;
+    String idBook;
+    String idType, name, creator, producer, price, quantity;
 
     public String getIdBook() {
         return idBook;
