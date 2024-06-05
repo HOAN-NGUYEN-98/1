@@ -3,7 +3,8 @@ package com.test.models;
 public class Detail {
     public int idBill, idBook, quantitySell;
 
-    public Detail(int idBook, int quantitySell) {
+    public Detail(int idBill, int idBook, int quantitySell) {
+        this.idBill = idBill;
         this.idBook = idBook;
         this.quantitySell = quantitySell;
     }
