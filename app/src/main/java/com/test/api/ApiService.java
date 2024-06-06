@@ -13,11 +13,13 @@ import com.test.models.LoginResp;
 import com.test.models.LogoutResp;
 import com.test.models.RegisterBody;
 import com.test.models.RegisterResp;
+import com.test.models.ResponseBill;
 import com.test.models.TopBook;
 import com.test.models.TotalMoney;
 import com.test.models.TypeBookRespone;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -93,8 +95,9 @@ public interface ApiService {
     @PUT("bill/{IdBill}")
     Call<Bill> updateBill(@Body Bill bill,@Path("IdBill") String IdBill);
 
+
     @POST("bill")
-    Call<Bill> postBill(@Body Bill bill);
+    Call<ResponseBill> postBill(@Body Bill bill);
 
     @POST("/bill/detail")
     Call<List<Detail>> postBodyBill(@Body List<Detail> detail);

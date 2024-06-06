@@ -15,14 +15,13 @@ public class Detail {
         return idBill;
     }
 
-    public void setIdBill(int idBill) {
-        this.idBill = idBill;
-    }
-
-    public Detail(int idBill, int idBook, int quantitySell) {
-        this.idBill = idBill;
+    public Detail(int idBook, int quantitySell) {
         this.idBook = idBook;
         this.quantitySell = quantitySell;
+    }
+
+    public void setIdBill(int idBill) {
+        this.idBill = idBill;
     }
 
     public int getIdBook() {

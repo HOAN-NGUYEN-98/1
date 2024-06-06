@@ -29,18 +29,20 @@ import com.test.api.ApiService;
 import com.test.models.Bill;
 import com.test.models.Detail;
 import com.test.models.Book;
+import com.test.models.ResponseBill;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AddBillActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-    TextView tv_TongThanhToan, tvID, tvDate;
+    TextView tv_TongThanhToan, tvDate;
     private RecyclerView recyclerView;
     RecyclerView rcvData;
     private MultiAdapterBook adapter;
@@ -49,7 +51,6 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
     EditText edt_CreateDate;
     Button btn_SelectDate;
     ArrayList<Book> bookList;
-
     Button btnThanhToan;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -60,17 +61,14 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
         setContentView(R.layout.activity_them_hoa_don);
         edt_CreateDate = findViewById(R.id.edt_date_buy);
         // edt_IdBill = findViewById(R.id.edt_id_bill);
-
         btn_SelectDate = findViewById(R.id.picDate);
         rcvData = findViewById(R.id.rcvData_book);
         btnGetSelected = findViewById(R.id.btn_them_hoa_don);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvData.setLayoutManager(linearLayoutManager);
         getListBook();
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         rcvData.addItemDecoration(itemDecoration);//nhin dep hon
-
         adapter = new MultiAdapterBook(this, bookList);
         btnGetSelected.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,14 +83,11 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
                 importDatePicker();
             }
         });
-
     }
-
     private void importDatePicker() {
         DatePickerFragment fragment = new DatePickerFragment();
         fragment.show(getSupportFragmentManager(), "date");
     }
-
     public static class DatePickerFragment extends DialogFragment {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -102,20 +97,16 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
             int day = c.get(Calendar.DAY_OF_MONTH);
             return new DatePickerDialog(getActivity(), (DatePickerDialog.OnDateSetListener) getActivity(), year, month, day);
         }
-
     }
-
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Calendar cal = new GregorianCalendar(year, month, dayOfMonth);
         setDate(cal);
 
     }
-
     private void setDate(final Calendar calendar) {
         edt_CreateDate.setText(sdf.format(calendar.getTime()));
     }
-
     void getListBook() {
         ApiService.apiService.getListBook().enqueue(new Callback<List<Book>>() {
             @Override
@@ -125,19 +116,15 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
                 bookList.addAll(json);
                 rcvData.setAdapter(adapter);
             }
-
             @Override
             public void onFailure(Call<List<Book>> call, Throwable throwable) {
                 Toast.makeText(AddBillActivity.this, "Error", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     public void multiClick() {
-        //String id=edt_IdBill.getText().toString();
         String date = edt_CreateDate.getText().toString();
-
         setContentView(R.layout.activity_thanh_toan);
         tv_TongThanhToan = findViewById(R.id.textViewTongThanhToan);
         rcvData = findViewById(R.id.recyclerView_Data);
@@ -146,73 +133,43 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
 
         int tt;
         List<Integer> numbers = new ArrayList<>();
-        for (int i = 0; i < adapter.getSelected().size(); i++) {
-
-            ArrayList<Book> empppp = adapter.getSelected();
-
-            tvDate.setText(date);
-
-            int pr = Integer.parseInt(empppp.get(i).getPrice());
-            int qu = Integer.parseInt(empppp.get(i).getQuantity());
-            int idBook = Integer.parseInt(empppp.get(i).getIdBook());
-
-//            Detail detail = new Detail(idBook, qu);
-//            ArrayList<Detail> list = new ArrayList<>();
-//            list.add(detail);
-
-            String dateOfBuy = tvDate.getText().toString();
-            Bill bill = new Bill(dateOfBuy);
-            ApiService.apiService.postBill(bill).enqueue(new Callback<Bill>() {
-                @Override
-                public void onResponse(Call<Bill> call, Response<Bill> response) {
-                    assert response.body() != null;
-                    Bill res = response.body();
-
-                    Log.d("AAAAAAAAAAAA", String.valueOf(res.getIdBill()));
-
-                    int id = Integer.parseInt(res.getIdBill());
-                    Detail detail = new Detail(id, idBook, qu);
-                    ArrayList<Detail> details = new ArrayList<>();
-                    details.add(detail);
-                    btnThanhToan.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            ApiService.apiService.postBodyBill(details).enqueue(new Callback<List<Detail>>() {
-                                @Override
-                                public void onResponse(Call<List<Detail>> call, Response<List<Detail>> response) {
-                                    response.body();
-                                    Toast.makeText(AddBillActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                                }
-
-                                @Override
-                                public void onFailure(Call<List<Detail>> call, Throwable throwable) {
-                                    Toast.makeText(AddBillActivity.this, "Error!", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-                    });
-
-
-                }
-
-                @Override
-                public void onFailure(Call<Bill> call, Throwable throwable) {
-                    Log.d("hoan", "onFailure: " + throwable.getMessage());
-                }
-            });
-
+        List<Detail> list = new ArrayList<>(); // Khởi tạo lại danh sách Detail
+        ArrayList<Book> selectedBooks = adapter.getSelected();
+        tvDate.setText(date);
+        for (Book book : selectedBooks) {
+            int pr = Integer.parseInt(book.getPrice());
+            int qu = Integer.parseInt(book.getQuantity());
+            int idBook = Integer.parseInt(book.getIdBook());
+            Detail detail = new Detail(idBook, qu);
+            list.add(detail);
             tt = pr * qu;
             numbers.add(tt);
-            int sum = 0;
-            for (int number : numbers) {
-                sum += number;
-                tv_TongThanhToan.setText(String.valueOf(sum));
-            }
-            // Tạo một adapter mới với list các item được chọn
-            TotalMoneyAdapter selectedItemsAdapter = new TotalMoneyAdapter(this, empppp);
-            rcvData.setLayoutManager(new LinearLayoutManager(this));
-            rcvData.setAdapter(selectedItemsAdapter);
         }
+        // Tính tổng tiền thanh toán
+        int sum = 0;
+        for (int number : numbers) {
+            sum += number;
+        }
+        tv_TongThanhToan.setText(String.valueOf(sum));
+        // Tạo Bill và gọi API để thêm Bill và các Detail
+        String dateOfBuy = tvDate.getText().toString();
+        Bill bill = new Bill(dateOfBuy, list);
+        ApiService.apiService.postBill(bill).enqueue(new Callback<ResponseBill>() {
+            @Override
+            public void onResponse(Call<ResponseBill> call, Response<ResponseBill> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(AddBillActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBill> call, Throwable throwable) {
+                Toast.makeText(AddBillActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        // Tạo một adapter mới với list các item được chọn
+        TotalMoneyAdapter selectedItemsAdapter = new TotalMoneyAdapter(this, selectedBooks);
+        rcvData.setLayoutManager(new LinearLayoutManager(this));
+        rcvData.setAdapter(selectedItemsAdapter);
     }
 
     @Override
