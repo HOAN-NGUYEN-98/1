@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.LongDef;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -26,6 +28,7 @@ import com.test.api.ApiService;
 import com.test.models.Bill;
 import com.test.models.Detail;
 import com.test.models.Book;
+import com.test.models.RequestBill;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -150,35 +153,29 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
             int qu = Integer.parseInt(empppp.get(i).getQuantity());
             int idBook = Integer.parseInt(empppp.get(i).getIdBook());
 
+            Detail detail = new Detail(idBook, qu);
+            ArrayList<Detail> list = new ArrayList<>();
+            list.add(detail);
+
             String dateOfBuy = tvDate.getText().toString();
-            Bill bill = new Bill(dateOfBuy);
-            ApiService.apiService.postBill(bill).enqueue(new Callback<Bill>() {
+            Bill bill = new Bill(dateOfBuy,list);
+            Log.d("hoan", "multiClick: "+bill.getIdBill());
+            ApiService.apiService.postBill(bill).enqueue(new Callback<RequestBill>() {
                 @Override
-                public void onResponse(Call<Bill> call, Response<Bill> response) {
-                    assert response.body() != null;
-                    int s = Integer.parseInt(response.body().getIdBill());
-
-                    Detail detail = new Detail(s, idBook, qu);
-                    ArrayList<Detail> list = new ArrayList<>();
-                    list.add(detail);
-
-                    ApiService.apiService.postBodyBill(list).enqueue(new Callback<List<Detail>>() {
-                        @Override
-                        public void onResponse(Call<List<Detail>> call, Response<List<Detail>> response) {
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<List<Detail>> call, Throwable throwable) {
-
-                        }
-                    });
-
+                public void onResponse(Call<RequestBill> call, Response<RequestBill> response) {
+//                    assert response.body() != null;
+//                    int s = Integer.parseInt(response.body().getIdBill());
+//                    Log.d("AAAAAAAAAAAAA", String.valueOf(s));
+//                    Toast.makeText(AddBillActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+                    if(response.isSuccessful() && response.body()!= null){
+                        Log.d("Hoan", "onResponse: "+ response.body());
+                    }else {
+                        Log.d("Hoan", "Error: ");
+                    }
                 }
-
                 @Override
-                public void onFailure(Call<Bill> call, Throwable throwable) {
-                    Toast.makeText(AddBillActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                public void onFailure(Call<RequestBill> call, Throwable throwable) {
+                    Log.d("hoan", "onFailure: "+throwable.getMessage());
                 }
             });
 
@@ -189,7 +186,6 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
                 sum += number;
                 tv_TongThanhToan.setText(String.valueOf(sum));
             }
-
             // Tạo một adapter mới với list các item được chọn
             TotalMoneyAdapter selectedItemsAdapter = new TotalMoneyAdapter(this, empppp);
             rcvData.setLayoutManager(new LinearLayoutManager(this));

@@ -7,8 +7,9 @@ import java.util.ArrayList;
 
 public class Bill extends RecyclerView.ItemDecoration implements Serializable {
     public String idBill;
-    public  String dateOfBuy;
+    public String dateOfBuy;
     ArrayList<Detail> details;
+
     public Bill(String dateOfBuy, ArrayList<Detail> details) {
         this.dateOfBuy = dateOfBuy;
         this.details = details;
@@ -22,12 +23,6 @@ public class Bill extends RecyclerView.ItemDecoration implements Serializable {
         this.details = details;
     }
 
-
-
-    public Bill( String dateOfBuy) {
-        this.dateOfBuy = dateOfBuy;
-
-    }
 
     public String getIdBill() {
         return idBill;

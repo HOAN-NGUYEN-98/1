@@ -13,6 +13,7 @@ import com.test.models.LoginResp;
 import com.test.models.LogoutResp;
 import com.test.models.RegisterBody;
 import com.test.models.RegisterResp;
+import com.test.models.RequestBill;
 import com.test.models.TopBook;
 import com.test.models.TotalMoney;
 import com.test.models.TypeBookRespone;
@@ -95,7 +96,7 @@ public interface ApiService {
     Call<Bill> updateBill(@Body Bill bill,@Path("IdBill") String IdBill);
 
     @POST("bill")
-    Call<Bill> postBill(@Body Bill bill);
+    Call<RequestBill> postBill(@Body Bill bill);
 
     @POST("bill")
     Call<List<Detail>> postBodyBill(@Body List<Detail> detail);

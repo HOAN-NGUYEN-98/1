@@ -1,10 +1,9 @@
 package com.test.models;
 
 public class Detail {
-    public int idBill, idBook, quantitySell;
+    public int idBook, quantitySell;
 
-    public Detail(int idBill, int idBook, int quantitySell) {
-        this.idBill = idBill;
+    public Detail(int idBook, int quantitySell) {
         this.idBook = idBook;
         this.quantitySell = quantitySell;
     }
