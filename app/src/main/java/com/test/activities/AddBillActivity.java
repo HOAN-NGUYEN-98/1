@@ -2,8 +2,10 @@ package com.test.activities;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,7 +15,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.LongDef;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -28,7 +29,6 @@ import com.test.api.ApiService;
 import com.test.models.Bill;
 import com.test.models.Detail;
 import com.test.models.Book;
-import com.test.models.RequestBill;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -49,6 +49,8 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
     EditText edt_CreateDate;
     Button btn_SelectDate;
     ArrayList<Book> bookList;
+
+    Button btnThanhToan;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
@@ -140,42 +142,62 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
         tv_TongThanhToan = findViewById(R.id.textViewTongThanhToan);
         rcvData = findViewById(R.id.recyclerView_Data);
         tvDate = findViewById(R.id.textViewDateCreate);
-        // tvID=findViewById(R.id.textViewIDBill);
+        btnThanhToan = findViewById(R.id.btn_thanh_toan);
+
         int tt;
         List<Integer> numbers = new ArrayList<>();
         for (int i = 0; i < adapter.getSelected().size(); i++) {
 
             ArrayList<Book> empppp = adapter.getSelected();
-            //tvID.setText(id);
+
             tvDate.setText(date);
 
             int pr = Integer.parseInt(empppp.get(i).getPrice());
             int qu = Integer.parseInt(empppp.get(i).getQuantity());
             int idBook = Integer.parseInt(empppp.get(i).getIdBook());
 
-            Detail detail = new Detail(idBook, qu);
-            ArrayList<Detail> list = new ArrayList<>();
-            list.add(detail);
+//            Detail detail = new Detail(idBook, qu);
+//            ArrayList<Detail> list = new ArrayList<>();
+//            list.add(detail);
 
             String dateOfBuy = tvDate.getText().toString();
-            Bill bill = new Bill(dateOfBuy,list);
-            Log.d("hoan", "multiClick: "+bill.getIdBill());
-            ApiService.apiService.postBill(bill).enqueue(new Callback<RequestBill>() {
+            Bill bill = new Bill(dateOfBuy);
+            ApiService.apiService.postBill(bill).enqueue(new Callback<Bill>() {
                 @Override
-                public void onResponse(Call<RequestBill> call, Response<RequestBill> response) {
-//                    assert response.body() != null;
-//                    int s = Integer.parseInt(response.body().getIdBill());
-//                    Log.d("AAAAAAAAAAAAA", String.valueOf(s));
-//                    Toast.makeText(AddBillActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                    if(response.isSuccessful() && response.body()!= null){
-                        Log.d("Hoan", "onResponse: "+ response.body());
-                    }else {
-                        Log.d("Hoan", "Error: ");
-                    }
+                public void onResponse(Call<Bill> call, Response<Bill> response) {
+                    assert response.body() != null;
+                    Bill res = response.body();
+
+                    Log.d("AAAAAAAAAAAA", String.valueOf(res.getIdBill()));
+
+                    int id = Integer.parseInt(res.getIdBill());
+                    Detail detail = new Detail(id, idBook, qu);
+                    ArrayList<Detail> details = new ArrayList<>();
+                    details.add(detail);
+                    btnThanhToan.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ApiService.apiService.postBodyBill(details).enqueue(new Callback<List<Detail>>() {
+                                @Override
+                                public void onResponse(Call<List<Detail>> call, Response<List<Detail>> response) {
+                                    response.body();
+                                    Toast.makeText(AddBillActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onFailure(Call<List<Detail>> call, Throwable throwable) {
+                                    Toast.makeText(AddBillActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    });
+
+
                 }
+
                 @Override
-                public void onFailure(Call<RequestBill> call, Throwable throwable) {
-                    Log.d("hoan", "onFailure: "+throwable.getMessage());
+                public void onFailure(Call<Bill> call, Throwable throwable) {
+                    Log.d("hoan", "onFailure: " + throwable.getMessage());
                 }
             });
 

@@ -13,7 +13,6 @@ import com.test.models.LoginResp;
 import com.test.models.LogoutResp;
 import com.test.models.RegisterBody;
 import com.test.models.RegisterResp;
-import com.test.models.RequestBill;
 import com.test.models.TopBook;
 import com.test.models.TotalMoney;
 import com.test.models.TypeBookRespone;
@@ -21,7 +20,6 @@ import com.test.models.TypeBookRespone;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
@@ -96,9 +94,9 @@ public interface ApiService {
     Call<Bill> updateBill(@Body Bill bill,@Path("IdBill") String IdBill);
 
     @POST("bill")
-    Call<RequestBill> postBill(@Body Bill bill);
+    Call<Bill> postBill(@Body Bill bill);
 
-    @POST("bill")
+    @POST("/bill/detail")
     Call<List<Detail>> postBodyBill(@Body List<Detail> detail);
     @GET("bill/top/id")
     Call<Bill> topIdBill();

@@ -32,6 +32,7 @@
         <activity android:name=".activities.TotalMoneyActivity"/>
         <activity android:name=".activities.TopBookActivity"/>
 
+
         <activity
             android:name=".activities.LoadingActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"

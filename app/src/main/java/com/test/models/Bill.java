@@ -8,24 +8,13 @@ import java.util.ArrayList;
 public class Bill extends RecyclerView.ItemDecoration implements Serializable {
     public String idBill;
     public String dateOfBuy;
-    ArrayList<Detail> details;
-
-    public Bill(String dateOfBuy, ArrayList<Detail> details) {
-        this.dateOfBuy = dateOfBuy;
-        this.details = details;
-    }
-
-    public ArrayList<Detail> getDetails() {
-        return details;
-    }
-
-    public void setDetails(ArrayList<Detail> details) {
-        this.details = details;
-    }
-
 
     public String getIdBill() {
         return idBill;
+    }
+
+    public Bill(String dateOfBuy) {
+        this.dateOfBuy = dateOfBuy;
     }
 
     public void setIdBill(String idBill) {
@@ -39,5 +28,4 @@ public class Bill extends RecyclerView.ItemDecoration implements Serializable {
     public void setDateOfBuy(String dateOfBuy) {
         this.dateOfBuy = dateOfBuy;
     }
-
 }
