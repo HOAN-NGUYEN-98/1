@@ -33,7 +33,6 @@ public class ListTypeBookActivity extends AppCompatActivity {
     List<TypeBookRespone> typeBookResponeList;
     RecyclerView rcvData;
     private TypeBookAdapter typeBookAdapter;
-    private NestedScrollView nestedSV;
     TypeBookAdapter.TypeBookViewHolder typeBookViewHolder;
 
     @Override
@@ -42,7 +41,7 @@ public class ListTypeBookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_the_loai);
         typeBookResponeList = new ArrayList<>();
         rcvData = findViewById(R.id.rcvTheLoai);
-        nestedSV = findViewById(R.id.idNestedSV);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvData.setLayoutManager(linearLayoutManager);
         getListType();
@@ -63,20 +62,6 @@ public class ListTypeBookActivity extends AppCompatActivity {
                 Intent intent = new Intent(ListTypeBookActivity.this, AddTypeBookActivity.class);
                 startActivity(intent);
                 finish();
-            }
-        });
-
-        nestedSV.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                // on scroll change we are checking when users scroll as bottom.
-                if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
-                    count++;
-                    loadingPB.setVisibility(View.VISIBLE);
-                    if (count < 20) {
-                        getListType();
-                    }
-                }
             }
         });
 
