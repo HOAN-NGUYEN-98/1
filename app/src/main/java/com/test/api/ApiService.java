@@ -92,6 +92,8 @@ public interface ApiService {
     Call<List<Bill>> getBill();
     @GET("bill/{id}")
     Call<Bill> getDetailBill(@Path("id") String id);
+    @GET("bill/detail/{id}")
+    Call<List<Detail>> detailBillByIdBill(@Path("id") String id);
     @PUT("bill/{IdBill}")
     Call<Bill> updateBill(@Body Bill bill,@Path("IdBill") String IdBill);
 
@@ -103,26 +105,5 @@ public interface ApiService {
     Call<List<Detail>> postBodyBill(@Body List<Detail> detail);
     @GET("bill/top/id")
     Call<Bill> topIdBill();
-
-// api detail bill
-
-
-    @GET("detailbill/{IdBill}")
-    Call<BillDetailRespone> detailBill(@Path("IdBill") String IdBill);
-
-    @POST("detailbill")
-    Call<BillDetailRespone> postDetailBill(@Body BillDetailRespone billDetailRespone);
-
-    @DELETE("detailbill/{IdBillDetail}")
-    Call<BillDetailRespone> deleteDetailBill(@Path("IdBillDetail") String IdBillDetail);
-
-    @GET("detailbill/bill/{IdBill}")
-    Call<List<BillDetailRespone>> detailBillByIdBill(@Path("IdBill") String IdBill);
-
-    @GET("detailbill/book/{IdBook}")
-    Call<List<BillDetailRespone>> detailBillByIdBook(@Path("IdBook") String IdBook);
-
-    @PUT("detailbill/{IdDetailBill}")
-    Call<BillDetailRespone> updateDetailBill(@Body BillDetailRespone billDetailRespone,@Path("IdDetailBill") String IdDetailBill);
 
 }

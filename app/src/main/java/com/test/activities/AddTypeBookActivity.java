@@ -18,14 +18,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AddTypeBookActivity extends AppCompatActivity {
-    EditText edtIdType, edtNameType, edtLocation, edtDescribe;
+    EditText  edtNameType, edtLocation, edtDescribe;
     Button add, back, list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_the_loai);
-        edtIdType = findViewById(R.id.edMa);
         edtNameType = findViewById(R.id.edTen);
         edtDescribe = findViewById(R.id.edMo);
         edtLocation = findViewById(R.id.edVi);
@@ -67,13 +66,12 @@ public class AddTypeBookActivity extends AppCompatActivity {
     }
 
     private void addType() {
-        String idType = edtIdType.getText().toString();
         String nameType = edtNameType.getText().toString();
         String location = edtLocation.getText().toString();
         String describe = edtDescribe.getText().toString();
-        TypeBookRespone typeBody = new TypeBookRespone(idType, nameType, location, describe);
+        TypeBookRespone typeBody = new TypeBookRespone( nameType, location, describe);
 
-        if (idType.equals("") || nameType.equals("") || location.equals("") || describe.equals("")) {
+        if ( nameType.equals("") || location.equals("") || describe.equals("")) {
             Toast.makeText(AddTypeBookActivity.this, "Hãy nhập đủ thông tin !", Toast.LENGTH_LONG).show();
         } else {
             ApiService.apiService.postType(typeBody).enqueue(new Callback<TypeBookRespone>() {

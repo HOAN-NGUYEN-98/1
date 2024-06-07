@@ -16,20 +16,21 @@ import com.test.R;
 import com.test.models.Bill;
 import com.test.models.BillDetailRespone;
 import com.test.models.Book;
+import com.test.models.Detail;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BillDetailAdapter extends RecyclerView.Adapter<BillDetailAdapter.DetailViewHolder> {
     private Context context;
-    private ArrayList<BillDetailRespone> books;
+    private List<Detail> books;
 
-    public BillDetailAdapter(Context context, ArrayList<BillDetailRespone> books) {
+    public BillDetailAdapter(Context context, List<Detail> books) {
         this.context = context;
         this.books = books;
     }
 
-    public void setEmployees(ArrayList<BillDetailRespone> employees) {
+    public void setEmployees(ArrayList<Detail> employees) {
         this.books = employees;
         notifyDataSetChanged();
     }
@@ -37,13 +38,13 @@ public class BillDetailAdapter extends RecyclerView.Adapter<BillDetailAdapter.De
     @NonNull
     @Override
     public BillDetailAdapter.DetailViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_sach, viewGroup, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_detail_bill, viewGroup, false);
         return new BillDetailAdapter.DetailViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BillDetailAdapter.DetailViewHolder multiViewHolder, int position) {
-        multiViewHolder.bind(books.get(position));
+    public void onBindViewHolder(@NonNull BillDetailAdapter.DetailViewHolder holder, int position) {
+        holder.bind(books.get(position));
     }
 
     @Override
@@ -52,31 +53,25 @@ public class BillDetailAdapter extends RecyclerView.Adapter<BillDetailAdapter.De
     }
 
     class DetailViewHolder extends RecyclerView.ViewHolder {
-        TextView tvQ;
-        private TextView textView, tvPrice, tvQuantity, textViewId;
-        private ImageView imageView, imgAdd, imgMinus;
 
+        private TextView  tvPrice, tvQuantitySell, textViewId;
+        private RelativeLayout layoutItem;
         DetailViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewId = itemView.findViewById(R.id.tvBookID);
-            textView = itemView.findViewById(R.id.tvBookName);
-            tvPrice = itemView.findViewById(R.id.tvBookPrice);
-            tvQuantity = itemView.findViewById(R.id.tvSoLuong);
-            imageView = itemView.findViewById(R.id.imageView_tick);
-            imgAdd = itemView.findViewById(R.id.add_quan);
-            imgMinus = itemView.findViewById(R.id.minus_quan);
-            tvQ = itemView.findViewById(R.id.change_quantity);
+            textViewId = itemView.findViewById(R.id.tv_id_book_detail);
+            tvPrice = itemView.findViewById(R.id.tv_price);
+            tvQuantitySell = itemView.findViewById(R.id.tv_quantity);
+
         }
 
-        void bind(final BillDetailRespone billDetailRespone) {
-
-
-
-
+        void bind(final Detail billDetailRespone) {
+            textViewId.setText(String.valueOf(billDetailRespone.getIdBook()));
+            tvPrice.setText(String.valueOf(billDetailRespone.getPrice()));
+            tvQuantitySell.setText(String.valueOf(billDetailRespone.getQuantitySell()));
         }
     }
 
-    public ArrayList<BillDetailRespone> getAll() {
+    public List<Detail> getAll() {
         return books;
     }
 

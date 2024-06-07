@@ -3,17 +3,18 @@ package com.test.models;
 import java.io.Serializable;
 
 public class TypeBookRespone implements Serializable {
-    String idType, nameType, describe, location;
+    int idType;
+    String nameType, describe, location;
 
     public TypeBookRespone() {
 
     }
 
-    public String getIdType() {
+    public int getIdType() {
         return idType;
     }
 
-    public void setIdType(String idType) {
+    public void setIdType(int idType) {
         this.idType = idType;
     }
 
@@ -41,8 +42,7 @@ public class TypeBookRespone implements Serializable {
         this.location = location;
     }
 
-    public TypeBookRespone(String idType, String nameType, String describe, String location) {
-        this.idType = idType;
+    public TypeBookRespone( String nameType, String describe, String location) {
         this.nameType = nameType;
         this.describe = describe;
         this.location = location;

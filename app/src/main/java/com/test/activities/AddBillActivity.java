@@ -51,7 +51,6 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
     EditText edt_CreateDate;
     Button btn_SelectDate;
     ArrayList<Book> bookList;
-    Button btnThanhToan;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
@@ -129,7 +128,6 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
         tv_TongThanhToan = findViewById(R.id.textViewTongThanhToan);
         rcvData = findViewById(R.id.recyclerView_Data);
         tvDate = findViewById(R.id.textViewDateCreate);
-        btnThanhToan = findViewById(R.id.btn_thanh_toan);
 
         int tt;
         List<Integer> numbers = new ArrayList<>();

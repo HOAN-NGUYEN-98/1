@@ -41,7 +41,7 @@ public class TypeBookDetailActivity extends AppCompatActivity {
         tvMo = findViewById(R.id.edMota);
         tvVi = findViewById(R.id.edVitri);
         assert bill != null;
-        tvId.setText(bill.getIdType());
+        tvId.setText(String.valueOf(bill.getIdType()));
         tvName.setText(bill.getNameType());
         tvMo.setText(bill.getDescribe());
         tvVi.setText(bill.getLocation());
@@ -113,7 +113,7 @@ public class TypeBookDetailActivity extends AppCompatActivity {
         String loType = tvVi.getText().toString();
         String desType = tvMo.getText().toString();
 
-        TypeBookRespone typeBookRespone = new TypeBookRespone(idType, nameType, desType, loType);
+        TypeBookRespone typeBookRespone = new TypeBookRespone(nameType, desType, loType);
         ApiService.apiService.updateType(typeBookRespone, idType).enqueue(new Callback<TypeBookRespone>() {
             @Override
             public void onResponse(Call<TypeBookRespone> call, Response<TypeBookRespone> response) {

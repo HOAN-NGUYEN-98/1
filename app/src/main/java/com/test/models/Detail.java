@@ -1,7 +1,20 @@
 package com.test.models;
 
 public class Detail {
-    public int id, idBill, idBook, quantitySell;
+    public int id;
+    public int idBill;
+    public int price;
+    public int idBook;
+    public int quantitySell;
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+
 
     public int getId() {
         return id;

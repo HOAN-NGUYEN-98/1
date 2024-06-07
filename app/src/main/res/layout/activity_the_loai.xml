@@ -29,11 +29,6 @@
         android:textColor="?attr/colorError"
         android:textSize="24sp" />
     <EditText
-        android:id="@+id/edMa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Mã thể loại" />
-    <EditText
         android:id="@+id/edTen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

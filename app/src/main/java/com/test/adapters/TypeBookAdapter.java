@@ -39,7 +39,7 @@ public class TypeBookAdapter  extends RecyclerView.Adapter<TypeBookAdapter.TypeB
             return;
         }
 
-        holder.tvId.setText(typeBookRespone.getIdType());
+        holder.tvId.setText(String.valueOf(typeBookRespone.getIdType()));
         holder.name.setText(typeBookRespone.getNameType());
         holder.location.setText(typeBookRespone.getLocation());
         holder.describe.setText(typeBookRespone.getDescribe());
