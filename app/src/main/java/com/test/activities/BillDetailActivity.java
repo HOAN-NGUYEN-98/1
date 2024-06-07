@@ -27,7 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BillDetailActivity extends AppCompatActivity {
-    TextView tvId,tvTotal;
+    TextView tvId,tvTotal,tvDateBuy;
     List<Detail> billList = new ArrayList<>();
     RecyclerView rcvData;
     private BillDetailAdapter billAdapter;
@@ -39,6 +39,7 @@ public class BillDetailActivity extends AppCompatActivity {
         tvId = findViewById(R.id.tv_id_bill);
         rcvData = findViewById(R.id.rcvDetailBill);
         tvTotal= findViewById(R.id.tv_total);
+        tvDateBuy = findViewById(R.id.tv_date_buy);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvData.setLayoutManager(linearLayoutManager);
         getListDetailBill();
@@ -79,6 +80,7 @@ public class BillDetailActivity extends AppCompatActivity {
                     sum += number;
                 }
                 tvTotal.setText(String.valueOf(sum));
+                tvDateBuy.setText(String.valueOf(json.get(0).getDateOfBuy()));
                 tvId.setText(String.valueOf(json.get(0).getIdBill()));
                 billList.addAll(json);
                 rcvData.setAdapter(billAdapter);

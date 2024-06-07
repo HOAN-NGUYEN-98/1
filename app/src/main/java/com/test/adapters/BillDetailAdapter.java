@@ -54,18 +54,18 @@ public class BillDetailAdapter extends RecyclerView.Adapter<BillDetailAdapter.De
 
     class DetailViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView  tvPrice, tvQuantitySell, textViewId;
+        private TextView  tvPrice, tvQuantitySell, textViewName;
         private RelativeLayout layoutItem;
         DetailViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewId = itemView.findViewById(R.id.tv_id_book_detail);
+            textViewName = itemView.findViewById(R.id.tv_name_book_detail);
             tvPrice = itemView.findViewById(R.id.tv_price);
             tvQuantitySell = itemView.findViewById(R.id.tv_quantity);
 
         }
 
         void bind(final Detail billDetailRespone) {
-            textViewId.setText(String.valueOf(billDetailRespone.getIdBook()));
+            textViewName.setText(String.valueOf(billDetailRespone.getName()));
             tvPrice.setText(String.valueOf(billDetailRespone.getPrice()));
             tvQuantitySell.setText(String.valueOf(billDetailRespone.getQuantitySell()));
         }

@@ -6,60 +6,85 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="50dp"
+    android:paddingTop="15dp"
     tool:context=".activities.BillDetailActivity">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Detail Bill"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="HÓA ĐƠN CHI TIẾT"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/red"
         android:textSize="30sp" />
 
     <LinearLayout
-        android:layout_margin="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
         android:orientation="horizontal">
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
             android:text="Mã hóa đơn:"
-            android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp" />
+
         <TextView
             android:id="@+id/tv_id_bill"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textAlignment="center"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:text="Ngày mua:"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_date_buy"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
             android:textColor="@color/black"
             android:textSize="20sp" />
     </LinearLayout>
 
 
     <LinearLayout
-        android:layout_margin="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
         android:orientation="horizontal">
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
             android:text="Tổng tiền:"
-            android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/red"
             android:textSize="20sp" />
+
         <TextView
             android:id="@+id/tv_total"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textAlignment="center"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
             android:textColor="@color/black"
             android:textSize="20sp" />
     </LinearLayout>

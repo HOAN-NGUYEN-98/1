@@ -5,7 +5,24 @@ public class Detail {
     public int idBill;
     public int price;
     public int idBook;
+
+    public String  name;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int quantitySell;
+    public String dateOfBuy;
+    public String getDateOfBuy() {
+        return dateOfBuy;
+    }
+    public void setDateOfBuy(String dateOfBuy) {
+        this.dateOfBuy = dateOfBuy;
+    }
+
     public int getPrice() {
         return price;
     }
