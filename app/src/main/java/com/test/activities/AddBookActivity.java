@@ -3,8 +3,12 @@ package com.test.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -16,15 +20,19 @@ import com.test.models.Book;
 import com.test.models.BookRespone;
 import com.test.models.TypeBookRespone;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddBookActivity extends AppCompatActivity {
-   // EditText id;
-    EditText nameB, priceB, quan, prod, crea, type;
+public class AddBookActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    List<String> list = new ArrayList<>();
+    EditText nameB, priceB, quan, prod, crea;
+    TextView type;
     Button btnAddBook, btnCancel;
-
+    Spinner spin;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +47,10 @@ public class AddBookActivity extends AppCompatActivity {
         btnAddBook = findViewById(R.id.btn_add_book);
         btnCancel = findViewById(R.id.btn_huy_book);
 
+
+        spin = (Spinner) findViewById(R.id.spinner);
+        spin.setOnItemSelectedListener(this);
+        getAllType();
 
         btnAddBook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +75,8 @@ public class AddBookActivity extends AppCompatActivity {
 
 
     private void addBook() {
-       // String idBook = id.getText().toString();
+
+
         String name = nameB.getText().toString();
         String idType = type.getText().toString();
         String price = priceB.getText().toString();
@@ -107,4 +120,50 @@ public class AddBookActivity extends AppCompatActivity {
     }
 
 
+    public void getAllType() {
+        ApiService.apiService.getTypeBook().enqueue(new Callback<List<TypeBookRespone>>() {
+            @Override
+            public void onResponse(Call<List<TypeBookRespone>> call, Response<List<TypeBookRespone>> response) {
+                List<TypeBookRespone> res = response.body();
+                for (int i = 0; i < res.size(); i++) {
+                    list.add(res.get(i).getNameType());
+                }
+
+                ArrayAdapter aa = new ArrayAdapter(AddBookActivity.this, android.R.layout.simple_spinner_item, list);
+                aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                //Setting the ArrayAdapter data on the Spinner
+                spin.setAdapter(aa);
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<TypeBookRespone>> call, Throwable throwable) {
+                Toast.makeText(AddBookActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String text = spin.getSelectedItem().toString();
+        ApiService.apiService.detailType(text).enqueue(new Callback<TypeBookRespone>() {
+            @Override
+            public void onResponse(Call<TypeBookRespone> call, Response<TypeBookRespone> response) {
+                TypeBookRespone res = response.body();
+                assert res != null;
+                type.setText(String.valueOf(res.getIdType()));
+            }
+
+            @Override
+            public void onFailure(Call<TypeBookRespone> call, Throwable throwable) {
+                Toast.makeText(AddBookActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }

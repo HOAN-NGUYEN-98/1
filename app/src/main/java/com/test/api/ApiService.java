@@ -58,6 +58,9 @@ public interface ApiService {
     @GET("type")
     Call<List<TypeBookRespone>> getTypeBook();
 
+    @GET("type/{name}")
+    Call<TypeBookRespone> detailType(@Path("name") String name);
+
     @DELETE("type/{IdType}")
     Call<TypeBookRespone> deleteType(@Path("IdType") String IdType);
 
