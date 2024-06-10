@@ -184,5 +184,4 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-
 }

@@ -34,10 +34,10 @@
 
         <TextView
             android:id="@+id/edt_type"
-            android:layout_width="60dp"
-            android:layout_height="32dp"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
             android:layout_marginStart="5dp"
-            android:textSize="20sp" />
+            android:textSize="0sp" />
 
         <Spinner
             android:id="@+id/spinner"
