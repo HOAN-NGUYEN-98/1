@@ -81,7 +81,7 @@ public interface ApiService {
     Call<BookRespone> deleteBookByID(@Path("IdBook") String IdBook);
 
     @PUT("book/{IdBook}")
-    Call<BookRespone> updateBook(@Body BookRespone bookRespone,@Path("IdBook") String IdBook);
+    Call<Book> updateBook(@Body Book book,@Path("IdBook") String IdBook);
 
 //    @GET("book/type/{IdType}")
 //    Call<List<BookRespone>> detailBookByIdType(@Path("IdType") String IdType);

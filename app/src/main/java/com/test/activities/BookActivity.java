@@ -4,7 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,14 +17,20 @@ import com.test.R;
 import com.test.api.ApiService;
 import com.test.models.Book;
 import com.test.models.BookRespone;
+import com.test.models.TypeBookRespone;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BookActivity extends AppCompatActivity {
+public class BookActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     TextView tvId, tvName, tvCreator, tvProducer, tvPrice, tvQuantity, tvIdType;
     Button del, back, upd;
+    Spinner spin;
+    List<String> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +59,10 @@ public class BookActivity extends AppCompatActivity {
         tvPrice.setText(book.getPrice());
         tvQuantity.setText(book.getQuantity());
         tvIdType.setText(book.getIdType());
+
+        spin = (Spinner) findViewById(R.id.spinner1);
+        spin.setOnItemSelectedListener(this);
+        getAllType();
 
         del.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,19 +131,70 @@ public class BookActivity extends AppCompatActivity {
         String quantity = tvQuantity.getText().toString();
         String creator = tvCreator.getText().toString();
         String producer = tvProducer.getText().toString();
-        BookRespone bookRespone = new BookRespone(name, idType, price, quantity, creator, producer);
+        Book bookRespone = new Book(idBook, idType, name, creator, producer, price, quantity);
         if (name.equals("") || price.equals("") || quantity.equals("") || creator.equals("") || producer.equals("")) {
             Toast.makeText(BookActivity.this, "Vui lòng nhập đủ thông tin!", Toast.LENGTH_SHORT).show();
         } else {
-            ApiService.apiService.updateBook(bookRespone, idBook).enqueue(new Callback<BookRespone>() {
+            ApiService.apiService.updateBook(bookRespone, idBook).enqueue(new Callback<Book>() {
                 @Override
-                public void onResponse(Call<BookRespone> call, Response<BookRespone> response) {
+                public void onResponse(Call<Book> call, Response<Book> response) {
+                    if (response.code() == 200) {
+
+                    }
                 }
 
                 @Override
-                public void onFailure(Call<BookRespone> call, Throwable throwable) {
+                public void onFailure(Call<Book> call, Throwable throwable) {
                 }
             });
         }
+    }
+
+
+    public void getAllType() {
+        ApiService.apiService.getTypeBook().enqueue(new Callback<List<TypeBookRespone>>() {
+            @Override
+            public void onResponse(Call<List<TypeBookRespone>> call, Response<List<TypeBookRespone>> response) {
+                List<TypeBookRespone> res = response.body();
+                for (int i = 0; i < res.size(); i++) {
+                    list.add(res.get(i).getNameType());
+                }
+
+                ArrayAdapter aa = new ArrayAdapter(BookActivity.this, android.R.layout.simple_spinner_item, list);
+                aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                //Setting the ArrayAdapter data on the Spinner
+                spin.setAdapter(aa);
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<TypeBookRespone>> call, Throwable throwable) {
+                Toast.makeText(BookActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text = spin.getSelectedItem().toString();
+        ApiService.apiService.detailType(text).enqueue(new Callback<TypeBookRespone>() {
+            @Override
+            public void onResponse(Call<TypeBookRespone> call, Response<TypeBookRespone> response) {
+                TypeBookRespone res = response.body();
+                assert res != null;
+                tvIdType.setText(String.valueOf(res.getIdType()));
+            }
+
+            @Override
+            public void onFailure(Call<TypeBookRespone> call, Throwable throwable) {
+                Toast.makeText(BookActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
