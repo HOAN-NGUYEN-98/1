@@ -59,7 +59,7 @@ public class MultiAdapterBook extends RecyclerView.Adapter<MultiAdapterBook.Mult
             textViewId = itemView.findViewById(R.id.tvBookID);
             textView = itemView.findViewById(R.id.tvBookName);
             tvPrice = itemView.findViewById(R.id.tvBookPrice);
-            tvQuantity = itemView.findViewById(R.id.tvSoLuong);
+            tvQuantity = itemView.findViewById(R.id.tvSo_Luong);
             imageView = itemView.findViewById(R.id.imageView_tick);
             imgAdd = itemView.findViewById(R.id.add_quan);
             imgMinus = itemView.findViewById(R.id.minus_quan);
@@ -85,35 +85,52 @@ public class MultiAdapterBook extends RecyclerView.Adapter<MultiAdapterBook.Mult
                     book.setChecked(!book.isChecked());
                     imageView.setVisibility(book.isChecked() ? View.VISIBLE : View.GONE);
                     imgAdd.setVisibility(book.isChecked() ? View.VISIBLE : View.GONE);
+
+                    int m = Integer.parseInt(tvQ.getText().toString());
+
+
                     imgMinus.setVisibility(book.isChecked() ? View.VISIBLE : View.GONE);
                     tvQ.setVisibility(book.isChecked() ? View.VISIBLE : View.GONE);
-                    if(tvQ.getText().toString().equals("0")){
+                    if (tvQ.getText().toString().equals("0")) {
                         Toast.makeText(context, "Nhập số lượng mua", Toast.LENGTH_SHORT).show();
+                    }
+                    if (m < 0 || m == 0) {
+                        imgMinus.setVisibility(View.INVISIBLE);
+                        book.setQuantity("0");
                     }
                     imgAdd.setOnClickListener(new View.OnClickListener() {
 
                         int chane;
+
                         @Override
                         public void onClick(View v) {
+
                             chane = Integer.parseInt(tvQ.getText().toString());
                             chane++;
                             tvQ.setText(String.valueOf(chane));
+                            int n = Integer.parseInt(tvQ.getText().toString());
+                            if (n > 0) {
+                                imgMinus.setVisibility(View.VISIBLE);
+                            }
                             book.setQuantity(tvQ.getText().toString());
                         }
                     });
 
                     imgMinus.setOnClickListener(new View.OnClickListener() {
                         int chane;
+
                         @Override
                         public void onClick(View v) {
                             chane = Integer.parseInt(tvQ.getText().toString());
                             chane--;
                             tvQ.setText(String.valueOf(chane));
-                            book.setQuantity(tvQ.getText().toString());
-                            if (chane < 1) {
+                            int n = Integer.parseInt(tvQ.getText().toString());
+                            if (n < 1) {
                                 imgMinus.setVisibility(View.INVISIBLE);
                             }
-                            imgMinus.setVisibility(View.VISIBLE);
+                            book.setQuantity(tvQ.getText().toString());
+
+
                         }
                     });
                 }

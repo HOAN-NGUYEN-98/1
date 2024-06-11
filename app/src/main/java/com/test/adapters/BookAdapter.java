@@ -75,7 +75,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             tvId = itemView.findViewById(R.id.tvBookID);
             tvBookName = itemView.findViewById(R.id.tvBookName);
             tvPrice = itemView.findViewById(R.id.tvBookPrice);
-            tvSoLuong = itemView.findViewById(R.id.tvSoLuong);
+            tvSoLuong = itemView.findViewById(R.id.tvSo_Luong);
 
         }
     }

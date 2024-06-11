@@ -75,7 +75,7 @@ public interface ApiService {
     Call<BookRespone> addBook(@Body BookRespone bookRespone);
 
     @GET("book/{IdBook}")
-    Call<BookRespone> detailBookByID(@Path("IdBook") String IdBook);
+    Call<Book> detailBookByID(@Path("IdBook") String IdBook);
 
     @DELETE("book/{IdBook}")
     Call<BookRespone> deleteBookByID(@Path("IdBook") String IdBook);

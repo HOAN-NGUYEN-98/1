@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:onClick="ADDHoaDon"
-            android:text="Thêm" />
+            android:text="Thanh toán" />
     </LinearLayout>
 
 

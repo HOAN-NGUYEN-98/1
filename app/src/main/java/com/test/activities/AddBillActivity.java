@@ -72,7 +72,11 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
         btnGetSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                multiClick();
+                try {
+                    multiClick();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -83,10 +87,12 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
             }
         });
     }
+
     private void importDatePicker() {
         DatePickerFragment fragment = new DatePickerFragment();
         fragment.show(getSupportFragmentManager(), "date");
     }
+
     public static class DatePickerFragment extends DialogFragment {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -97,15 +103,18 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
             return new DatePickerDialog(getActivity(), (DatePickerDialog.OnDateSetListener) getActivity(), year, month, day);
         }
     }
+
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Calendar cal = new GregorianCalendar(year, month, dayOfMonth);
         setDate(cal);
 
     }
+
     private void setDate(final Calendar calendar) {
         edt_CreateDate.setText(sdf.format(calendar.getTime()));
     }
+
     void getListBook() {
         ApiService.apiService.getListBook().enqueue(new Callback<List<Book>>() {
             @Override
@@ -115,6 +124,7 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
                 bookList.addAll(json);
                 rcvData.setAdapter(adapter);
             }
+
             @Override
             public void onFailure(Call<List<Book>> call, Throwable throwable) {
                 Toast.makeText(AddBillActivity.this, "Error", Toast.LENGTH_SHORT).show();
@@ -122,52 +132,61 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
         });
     }
 
-    public void multiClick() {
-        String date = edt_CreateDate.getText().toString();
-        setContentView(R.layout.activity_thanh_toan);
-        tv_TongThanhToan = findViewById(R.id.textViewTongThanhToan);
-        rcvData = findViewById(R.id.recyclerView_Data);
-        tvDate = findViewById(R.id.textViewDateCreate);
-
-        int tt;
-        List<Integer> numbers = new ArrayList<>();
-        List<Detail> list = new ArrayList<>(); // Khởi tạo lại danh sách Detail
+    public void multiClick() throws InterruptedException {
         ArrayList<Book> selectedBooks = adapter.getSelected();
-        tvDate.setText(date);
-        for (Book book : selectedBooks) {
-            int pr = Integer.parseInt(book.getPrice());
-            int qu = Integer.parseInt(book.getQuantity());
-            int idBook = Integer.parseInt(book.getIdBook());
-            Detail detail = new Detail(idBook, qu);
-            list.add(detail);
-            tt = pr * qu;
-            numbers.add(tt);
-        }
-        // Tính tổng tiền thanh toán
-        int sum = 0;
-        for (int number : numbers) {
-            sum += number;
-        }
-        tv_TongThanhToan.setText(String.valueOf(sum));
-        // Tạo Bill và gọi API để thêm Bill và các Detail
-        String dateOfBuy = tvDate.getText().toString();
-        Bill bill = new Bill(dateOfBuy, list);
-        ApiService.apiService.postBill(bill).enqueue(new Callback<ResponseBill>() {
-            @Override
-            public void onResponse(Call<ResponseBill> call, Response<ResponseBill> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(AddBillActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+        String s = edt_CreateDate.getText().toString();
+        if (s.equals("")) {
+            Toast.makeText(this, "Hãy chọn ngày", Toast.LENGTH_SHORT).show();
+        } else if (s != "" && selectedBooks.isEmpty()) {
+            Toast.makeText(this, "Hãy chọn sách thanh toán", Toast.LENGTH_SHORT).show();
+        } else {
+            String date = edt_CreateDate.getText().toString();
+            setContentView(R.layout.activity_thanh_toan);
+            tv_TongThanhToan = findViewById(R.id.textViewTongThanhToan);
+            rcvData = findViewById(R.id.recyclerView_Data);
+            tvDate = findViewById(R.id.textViewDateCreate);
+
+            int tt, pr, qu;
+            List<Integer> numbers = new ArrayList<>();
+            List<Detail> list = new ArrayList<>(); // Khởi tạo lại danh sách Detail
+
+            tvDate.setText(date);
+            for (Book book : selectedBooks) {
+                pr = Integer.parseInt(book.getPrice());
+                qu = Integer.parseInt(book.getQuantity());
+                int idBook = Integer.parseInt(book.getIdBook());
+                Detail detail = new Detail(idBook, qu);
+                list.add(detail);
+                tt = pr * qu;
+                numbers.add(tt);
+
+            }
+            // Tính tổng tiền thanh toán
+            int sum = 0;
+            for (int number : numbers) {
+                sum += number;
+            }
+            tv_TongThanhToan.setText(String.valueOf(sum));
+            // Tạo Bill và gọi API để thêm Bill và các Detail
+            String dateOfBuy = tvDate.getText().toString();
+            Bill bill = new Bill(dateOfBuy, list);
+
+            ApiService.apiService.postBill(bill).enqueue(new Callback<ResponseBill>() {
+                @Override
+                public void onResponse(Call<ResponseBill> call, Response<ResponseBill> response) {
                 }
-            }
-            @Override
-            public void onFailure(Call<ResponseBill> call, Throwable throwable) {
-                Toast.makeText(AddBillActivity.this, "Error!", Toast.LENGTH_SHORT).show();
-            }
-        });
-        // Tạo một adapter mới với list các item được chọn
-        TotalMoneyAdapter selectedItemsAdapter = new TotalMoneyAdapter(this, selectedBooks);
-        rcvData.setLayoutManager(new LinearLayoutManager(this));
-        rcvData.setAdapter(selectedItemsAdapter);
+
+                @Override
+                public void onFailure(Call<ResponseBill> call, Throwable throwable) {
+                    Toast.makeText(AddBillActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                }
+            });
+            // Tạo một adapter mới với list các item được chọn
+            TotalMoneyAdapter selectedItemsAdapter = new TotalMoneyAdapter(this, selectedBooks);
+            rcvData.setLayoutManager(new LinearLayoutManager(this));
+            rcvData.setAdapter(selectedItemsAdapter);
+        }
+
     }
 
     @Override

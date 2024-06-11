@@ -2,6 +2,7 @@ package com.test.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +32,7 @@ import retrofit2.Response;
 
 public class ListBookActivity extends AppCompatActivity {
     RecyclerView rcvdata;
-    EditText edT;
+    EditText edtSearch;
     List<Book> bookList;
     private BookAdapter bookAdapter;
 
@@ -44,7 +45,7 @@ public class ListBookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_sach);
         btnAddBook = findViewById(R.id.btnAddBook);
         search = findViewById(R.id.btnTim);
-        edT = findViewById(R.id.edSearchBook);
+        edtSearch = findViewById(R.id.edSearchBook);
         rcvdata = findViewById(R.id.rcvBook);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -83,27 +84,29 @@ public class ListBookActivity extends AppCompatActivity {
         setContentView(R.layout.item_sach);
         TextView id = findViewById(R.id.tvBookID);
         TextView name = findViewById(R.id.tvBookName);
-        TextView quan = findViewById(R.id.tvSoLuong);
+        TextView quan = findViewById(R.id.tvSo_Luong);
         TextView price = findViewById(R.id.tvBookPrice);
-        if (edT.getText().toString().equals("")) {
+        String idBook =edtSearch.getText().toString();
+        if (idBook.equals("")) {
             Toast.makeText(ListBookActivity.this, "Hãy nhập ID book!", Toast.LENGTH_SHORT).show();
         } else {
-            ApiService.apiService.detailBookByID(edT.getText().toString()).enqueue(new Callback<BookRespone>() {
+            Log.d("Hoan", "searchBook: "+String.valueOf(edtSearch.getText()));
+            ApiService.apiService.detailBookByID(idBook).enqueue(new Callback<Book>() {
                 @Override
-                public void onResponse(Call<BookRespone> call, Response<BookRespone> response) {
+                public void onResponse(Call<Book> call, Response<Book> response) {
                     if (response.code() != 200) {
                         Toast.makeText(ListBookActivity.this, "ID không tồn tại!", Toast.LENGTH_SHORT).show();
                     } else {
                         assert response.body() != null;
-                        id.setText(response.body().getIdBook());
-                        name.setText(response.body().getName());
-                        price.setText(response.body().getPrice());
-                        quan.setText(response.body().getQuantity());
+                        id.setText(String.valueOf(response.body().getIdBook()));
+                        name.setText(String.valueOf(response.body().getName()));
+                        price.setText(String.valueOf(response.body().getPrice()));
+                        quan.setText(String.valueOf(response.body().getQuantity()));
                     }
                 }
 
                 @Override
-                public void onFailure(Call<BookRespone> call, Throwable throwable) {
+                public void onFailure(Call<Book> call, Throwable throwable) {
                     Toast.makeText(ListBookActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                 }
             });
