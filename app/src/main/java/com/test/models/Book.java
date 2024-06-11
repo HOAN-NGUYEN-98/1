@@ -13,6 +13,16 @@ public class Book implements Serializable {
 
     private boolean isChecked = false;
     String idBook;
+
+    public String getNameType() {
+        return nameType;
+    }
+
+    public void setNameType(String nameType) {
+        this.nameType = nameType;
+    }
+
+    String nameType;
     String idType, name, creator, producer, price, quantity;
 
     public String getIdBook() {

@@ -27,10 +27,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BookActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    TextView tvId, tvName, tvCreator, tvProducer, tvPrice, tvQuantity, tvIdType;
+    TextView tvId, tvName, tvCreator, tvProducer, tvPrice, tvQuantity, tvIdType, tvNameType;
     Button del, back, upd;
     Spinner spin;
     List<String> list = new ArrayList<>();
+
+    String dest;
+    List<String> list1 = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,7 @@ public class BookActivity extends AppCompatActivity implements AdapterView.OnIte
         del = findViewById(R.id.btn_xoa_book);
         back = findViewById(R.id.btnCancesua);
         upd = findViewById(R.id.btnUpdasua);
+        tvNameType = findViewById(R.id.ed_name_type_sua);
         assert book != null;
         tvId.setText(book.getIdBook());
         tvName.setText(book.getName());
@@ -59,6 +63,7 @@ public class BookActivity extends AppCompatActivity implements AdapterView.OnIte
         tvPrice.setText(book.getPrice());
         tvQuantity.setText(book.getQuantity());
         tvIdType.setText(book.getIdType());
+        tvNameType.setText(book.getNameType());
 
         spin = (Spinner) findViewById(R.id.spinner1);
         spin.setOnItemSelectedListener(this);
@@ -138,9 +143,6 @@ public class BookActivity extends AppCompatActivity implements AdapterView.OnIte
             ApiService.apiService.updateBook(bookRespone, idBook).enqueue(new Callback<Book>() {
                 @Override
                 public void onResponse(Call<Book> call, Response<Book> response) {
-                    if (response.code() == 200) {
-
-                    }
                 }
 
                 @Override
@@ -158,13 +160,15 @@ public class BookActivity extends AppCompatActivity implements AdapterView.OnIte
                 List<TypeBookRespone> res = response.body();
                 for (int i = 0; i < res.size(); i++) {
                     list.add(res.get(i).getNameType());
+
+
                 }
+
 
                 ArrayAdapter aa = new ArrayAdapter(BookActivity.this, android.R.layout.simple_spinner_item, list);
                 aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 //Setting the ArrayAdapter data on the Spinner
                 spin.setAdapter(aa);
-
 
             }
 
@@ -177,6 +181,7 @@ public class BookActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
         String text = spin.getSelectedItem().toString();
         ApiService.apiService.detailType(text).enqueue(new Callback<TypeBookRespone>() {
             @Override
@@ -184,6 +189,7 @@ public class BookActivity extends AppCompatActivity implements AdapterView.OnIte
                 TypeBookRespone res = response.body();
                 assert res != null;
                 tvIdType.setText(String.valueOf(res.getIdType()));
+                //tvNameType.setText(String.valueOf(res.getNameType()));
             }
 
             @Override
@@ -195,6 +201,5 @@ public class BookActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/activity_sach_sua"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_sach_sua"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="@android:color/white"
     android:layout_margin="15dp"
+    android:background="@android:color/white"
+    android:orientation="vertical"
     tools:context=".activities.BookActivity">
 
     <TextView
@@ -25,17 +25,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Mã sách:" />
+
     <TextView
-        android:textSize="18sp"
         android:id="@+id/edMaSachsua"
-        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        />
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mã thể loại:" />
+        android:text="Tên thể loại:" />
+
+    <TextView
+        android:textSize="18sp"
+        android:id="@+id/ed_name_type_sua"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Tên thể loại" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chọn thể loại:" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,6 +59,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:textSize="0sp" />
+
         <Spinner
             android:id="@+id/spinner1"
             android:layout_width="match_parent"
@@ -53,11 +67,12 @@
             android:hint="Mã thể loại" />
     </LinearLayout>
 
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tên sách:"
-        />
+        android:text="Tên sách:" />
+
     <EditText
         android:id="@+id/edTenSachsua"
         android:layout_width="match_parent"
@@ -67,8 +82,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tác giả:"
-        />
+        android:text="Tác giả:" />
+
     <EditText
         android:id="@+id/edTacGiasua"
         android:layout_width="match_parent"
@@ -78,8 +93,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="NXB:"
-        />
+        android:text="NXB:" />
+
     <EditText
         android:id="@+id/edNXBsua"
         android:layout_width="match_parent"
@@ -89,8 +104,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Giá bìa:"
-        />
+        android:text="Giá bìa:" />
+
     <EditText
         android:id="@+id/edGiaBiasua"
         android:layout_width="match_parent"
@@ -100,18 +115,20 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Số lượng:"
-        />
+        android:text="Số lượng:" />
+
     <EditText
         android:id="@+id/edSoLuongsua"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Số lượng" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="2">
+
         <Button
             android:id="@+id/btnUpdasua"
             android:layout_width="wrap_content"
@@ -119,6 +136,7 @@
             android:layout_weight="1"
             android:onClick="capsua"
             android:text="Cập nhật" />
+
         <Button
             android:id="@+id/btnCancesua"
             android:layout_width="wrap_content"
@@ -126,6 +144,7 @@
             android:layout_weight="1"
             android:onClick="quaysua"
             android:text="Quay lại" />
+
         <Button
             android:id="@+id/btn_xoa_book"
             android:layout_width="wrap_content"
