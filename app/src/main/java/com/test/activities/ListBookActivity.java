@@ -81,22 +81,23 @@ public class ListBookActivity extends AppCompatActivity {
     }
 
     private void searchBook() {
-        setContentView(R.layout.item_sach);
-        TextView id = findViewById(R.id.tvBookID);
-        TextView name = findViewById(R.id.tvBookName);
-        TextView quan = findViewById(R.id.tvSo_Luong);
-        TextView price = findViewById(R.id.tvBookPrice);
-        String idBook =edtSearch.getText().toString();
+        String idBook = edtSearch.getText().toString();
         if (idBook.equals("")) {
             Toast.makeText(ListBookActivity.this, "Hãy nhập ID book!", Toast.LENGTH_SHORT).show();
         } else {
-            Log.d("Hoan", "searchBook: "+String.valueOf(edtSearch.getText()));
+            Log.d("Hoan", "searchBook: " + String.valueOf(edtSearch.getText()));
             ApiService.apiService.detailBookByID(idBook).enqueue(new Callback<Book>() {
                 @Override
                 public void onResponse(Call<Book> call, Response<Book> response) {
                     if (response.code() != 200) {
                         Toast.makeText(ListBookActivity.this, "ID không tồn tại!", Toast.LENGTH_SHORT).show();
                     } else {
+                        setContentView(R.layout.item_sach);
+                        TextView id = findViewById(R.id.tvBookID);
+                        TextView name = findViewById(R.id.tvBookName);
+                        TextView quan = findViewById(R.id.tvSo_Luong);
+                        TextView price = findViewById(R.id.tvBookPrice);
+
                         assert response.body() != null;
                         id.setText(String.valueOf(response.body().getIdBook()));
                         name.setText(String.valueOf(response.body().getName()));

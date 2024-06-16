@@ -8,13 +8,6 @@
     android:padding="15dp"
     tools:context=".activities.AddBillActivity">
 
-<!--    <TextView-->
-<!--        android:id="@+id/edt_id_bill"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="37dp"-->
-<!--        android:hint="Mã hoá đơn"-->
-<!--        android:textSize="20dp" />-->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -7,6 +7,8 @@ public class Detail {
     public int idBook;
 
     public String  name;
+    public int quantitySell;
+    public String dateOfBuy;
     public String getName() {
         return name;
     }
@@ -14,8 +16,6 @@ public class Detail {
         this.name = name;
     }
 
-    public int quantitySell;
-    public String dateOfBuy;
     public String getDateOfBuy() {
         return dateOfBuy;
     }
@@ -30,8 +30,6 @@ public class Detail {
     public void setPrice(int price) {
         this.price = price;
     }
-
-
 
     public int getId() {
         return id;

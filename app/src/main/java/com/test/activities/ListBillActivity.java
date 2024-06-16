@@ -74,9 +74,7 @@ public class ListBillActivity extends AppCompatActivity {
     }
 
     private void findBill() {
-        setContentView(R.layout.item_bill);
-        TextView id = findViewById(R.id.tv_idBill);
-        TextView date = findViewById(R.id.tv_dateOfBuy);
+
         if (edT.getText().toString().equals("")) {
             Toast.makeText(ListBillActivity.this, "Hãy nhập ID bill!", Toast.LENGTH_SHORT).show();
         } else {
@@ -86,6 +84,9 @@ public class ListBillActivity extends AppCompatActivity {
                     if (response.code() != 200) {
                         Toast.makeText(ListBillActivity.this, "ID không tồn tại!", Toast.LENGTH_SHORT).show();
                     } else {
+                        setContentView(R.layout.item_bill);
+                        TextView id = findViewById(R.id.tv_idBill);
+                        TextView date = findViewById(R.id.tv_dateOfBuy);
                         id.setText(response.body().getIdBill());
                         date.setText(response.body().getDateOfBuy());
                     }
