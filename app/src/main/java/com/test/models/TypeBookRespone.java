@@ -3,8 +3,8 @@ package com.test.models;
 import java.io.Serializable;
 
 public class TypeBookRespone implements Serializable {
-    int idType;
-    String nameType, describe, location;
+        int idType;
+        String nameType, describe, location;
 
     public TypeBookRespone() {
 

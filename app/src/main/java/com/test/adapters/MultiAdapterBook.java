@@ -1,6 +1,9 @@
 package com.test.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.test.R;
+import com.test.activities.BillDetailActivity;
 import com.test.models.Book;
 
 import java.util.ArrayList;
@@ -72,6 +76,9 @@ public class MultiAdapterBook extends RecyclerView.Adapter<MultiAdapterBook.Mult
             imgAdd.setVisibility(book.isChecked() ? View.VISIBLE : View.GONE);
             imgMinus.setVisibility(book.isChecked() ? View.VISIBLE : View.GONE);
             imgMinus.setVisibility(book.isChecked() ? View.VISIBLE : View.GONE);
+
+            Log.d("TAG", "bind: "+tvQuantity.getText().toString());
+
 
             tvPrice.setText(String.valueOf(book.getPrice()));
             textView.setText(book.getName());

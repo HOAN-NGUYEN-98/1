@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.test.R;
 import com.test.api.ApiService;
 import com.test.models.TypeBookRespone;
+import com.test.models.TypeBookUpdateRespone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,15 +57,6 @@ public class TypeBookDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 updateType();
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                Intent intent = new Intent(TypeBookDetailActivity.this, ListTypeBookActivity.class);
-                startActivity(intent);
-                finish();
-                Toast.makeText(TypeBookDetailActivity.this,"Sửa thành công!",Toast.LENGTH_SHORT).show();
             }
         });
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -81,16 +73,15 @@ public class TypeBookDetailActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(Call<TypeBookRespone> call, Response<TypeBookRespone> response) {
-                TypeBookRespone res=response.body();
-                if(response.code()==400){
+                TypeBookRespone res = response.body();
+                if (response.code() == 400) {
                     Toast.makeText(TypeBookDetailActivity.this, "Hãy xóa book trước khi xóa type book !", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    assert res!=null;
-                        Toast.makeText(TypeBookDetailActivity.this, "Delete success!", Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(TypeBookDetailActivity.this, ListTypeBookActivity.class);
-                        startActivity(intent);
-                        finish();
+                } else {
+                    assert res != null;
+                    Toast.makeText(TypeBookDetailActivity.this, "Delete success!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(TypeBookDetailActivity.this, ListTypeBookActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
 
@@ -113,15 +104,31 @@ public class TypeBookDetailActivity extends AppCompatActivity {
         String loType = tvVi.getText().toString();
         String desType = tvMo.getText().toString();
 
-        TypeBookRespone typeBookRespone = new TypeBookRespone(nameType, desType, loType);
-        ApiService.apiService.updateType(typeBookRespone, idType).enqueue(new Callback<TypeBookRespone>() {
+        TypeBookUpdateRespone typeBookRespone = new TypeBookUpdateRespone(idType, nameType, desType, loType);
+        if (idType.equals("") || nameType.equals("") || desType.equals("") || loType.equals("") ) {
+            Toast.makeText(TypeBookDetailActivity.this, "Vui lòng nhập đủ thông tin!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+
+
+        ApiService.apiService.updateType(typeBookRespone, idType).enqueue(new Callback<TypeBookUpdateRespone>() {
             @Override
-            public void onResponse(Call<TypeBookRespone> call, Response<TypeBookRespone> response) {
+            public void onResponse(Call<TypeBookUpdateRespone> call, Response<TypeBookUpdateRespone> response) {
+                if(response.code()==200){
+                    Toast.makeText(TypeBookDetailActivity.this, "Sửa thành công!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(TypeBookDetailActivity.this, ListTypeBookActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else {
+                    Toast.makeText(TypeBookDetailActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
-            public void onFailure(Call<TypeBookRespone> call, Throwable throwable) {
+            public void onFailure(Call<TypeBookUpdateRespone> call, Throwable throwable) {
             }
         });
+        }
     }
 }

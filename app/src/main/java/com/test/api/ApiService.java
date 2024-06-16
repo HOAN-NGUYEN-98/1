@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.test.models.Bill;
 import com.test.models.BillDetailRespone;
 import com.test.models.Book;
+import com.test.models.BookBulkUpdateRespone;
 import com.test.models.BookRespone;
 
 import com.test.models.Detail;
@@ -17,6 +18,7 @@ import com.test.models.ResponseBill;
 import com.test.models.TopBook;
 import com.test.models.TotalMoney;
 import com.test.models.TypeBookRespone;
+import com.test.models.TypeBookUpdateRespone;
 
 import java.util.List;
 import java.util.Objects;
@@ -65,7 +67,7 @@ public interface ApiService {
     Call<TypeBookRespone> deleteType(@Path("IdType") String IdType);
 
     @PUT("type/{IdType}")
-    Call<TypeBookRespone> updateType(@Body TypeBookRespone typeBookRespone,@Path("IdType") String IdType);
+    Call<TypeBookUpdateRespone> updateType(@Body TypeBookUpdateRespone typeBookRespone, @Path("IdType") String IdType);
 
 // api book
     @GET("book")
@@ -82,6 +84,9 @@ public interface ApiService {
 
     @PUT("book/{IdBook}")
     Call<Book> updateBook(@Body Book book,@Path("IdBook") String IdBook);
+
+    @PUT("book/updatelist/allbook")
+    Call<List<BookBulkUpdateRespone>> updateListBook(@Body Book book);
 
 //    @GET("book/type/{IdType}")
 //    Call<List<BookRespone>> detailBookByIdType(@Path("IdType") String IdType);

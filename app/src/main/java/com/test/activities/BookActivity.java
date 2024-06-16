@@ -3,6 +3,7 @@ package com.test.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -88,15 +89,6 @@ public class BookActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View v) {
                 updateBook();
-                try {
-                    Thread.sleep(2000);
-                    Intent intent = new Intent(BookActivity.this, ListBookActivity.class);
-                    startActivity(intent);
-                    finish();
-                    Toast.makeText(BookActivity.this, "Sửa thành công!", Toast.LENGTH_SHORT).show();
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
             }
         });
 
@@ -143,10 +135,20 @@ public class BookActivity extends AppCompatActivity implements AdapterView.OnIte
             ApiService.apiService.updateBook(bookRespone, idBook).enqueue(new Callback<Book>() {
                 @Override
                 public void onResponse(Call<Book> call, Response<Book> response) {
+                   if(response.code()==200){
+                       Toast.makeText(BookActivity.this, "Sửa thành công!", Toast.LENGTH_SHORT).show();
+                       Intent intent = new Intent(BookActivity.this, ListBookActivity.class);
+                       startActivity(intent);
+                       finish();
+                   }
+                   else {
+                       Toast.makeText(BookActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                   }
                 }
 
                 @Override
                 public void onFailure(Call<Book> call, Throwable throwable) {
+                    Toast.makeText(BookActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                 }
             });
         }

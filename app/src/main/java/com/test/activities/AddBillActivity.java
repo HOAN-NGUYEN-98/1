@@ -146,7 +146,7 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
             rcvData = findViewById(R.id.recyclerView_Data);
             tvDate = findViewById(R.id.textViewDateCreate);
 
-            int tt, pr, qu;
+            int tt, pr, qu, idBook;
             List<Integer> numbers = new ArrayList<>();
             List<Detail> list = new ArrayList<>(); // Khởi tạo lại danh sách Detail
 
@@ -154,11 +154,13 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
             for (Book book : selectedBooks) {
                 pr = Integer.parseInt(book.getPrice());
                 qu = Integer.parseInt(book.getQuantity());
-                int idBook = Integer.parseInt(book.getIdBook());
+                idBook = Integer.parseInt(book.getIdBook());
                 Detail detail = new Detail(idBook, qu);
                 list.add(detail);
                 tt = pr * qu;
                 numbers.add(tt);
+
+                Log.d("Hoan Book", "multiClick: "+ "idBook: "+idBook+" name: "+book.getName()+" pr: "+ pr+ " qu:" +qu);
 
             }
             // Tính tổng tiền thanh toán
