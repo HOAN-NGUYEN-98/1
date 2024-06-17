@@ -3,9 +3,7 @@ package com.test.api;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.test.models.Bill;
-import com.test.models.BillDetailRespone;
 import com.test.models.Book;
-import com.test.models.BookBulkUpdateRespone;
 import com.test.models.BookRespone;
 
 import com.test.models.Detail;
@@ -86,10 +84,7 @@ public interface ApiService {
     Call<Book> updateBook(@Body Book book,@Path("IdBook") String IdBook);
 
     @PUT("book/updatelist/allbook")
-    Call<List<BookBulkUpdateRespone>> updateListBook(@Body Book book);
-
-//    @GET("book/type/{IdType}")
-//    Call<List<BookRespone>> detailBookByIdType(@Path("IdType") String IdType);
+    Call<Book> updateListBook();
 
 // api bill
     @GET("bill/total")

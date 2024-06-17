@@ -51,6 +51,7 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
     EditText edt_CreateDate;
     Button btn_SelectDate;
     ArrayList<Book> bookList;
+
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
@@ -160,7 +161,7 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
                 tt = pr * qu;
                 numbers.add(tt);
 
-                Log.d("Hoan Book", "multiClick: "+ "idBook: "+idBook+" name: "+book.getName()+" pr: "+ pr+ " qu:" +qu);
+                Log.d("Hoan Book", "multiClick: " + "idBook: " + idBook + " name: " + book.getName() + " pr: " + pr + " qu:" + qu);
 
             }
             // Tính tổng tiền thanh toán
@@ -176,6 +177,15 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
             ApiService.apiService.postBill(bill).enqueue(new Callback<ResponseBill>() {
                 @Override
                 public void onResponse(Call<ResponseBill> call, Response<ResponseBill> response) {
+                    //cap nhat so luong sau khi mua
+                    ApiService.apiService.updateListBook().enqueue(new Callback<Book>() {
+                        @Override
+                        public void onResponse(Call<Book> call, Response<Book> response) {
+                        }
+                        @Override
+                        public void onFailure(Call<Book> call, Throwable throwable) {
+                        }
+                    });
                 }
 
                 @Override
@@ -183,12 +193,19 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
                     Toast.makeText(AddBillActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                 }
             });
+
+
             // Tạo một adapter mới với list các item được chọn
             TotalMoneyAdapter selectedItemsAdapter = new TotalMoneyAdapter(this, selectedBooks);
             rcvData.setLayoutManager(new LinearLayoutManager(this));
             rcvData.setAdapter(selectedItemsAdapter);
-        }
 
+
+
+
+
+
+        }
     }
 
     @Override
