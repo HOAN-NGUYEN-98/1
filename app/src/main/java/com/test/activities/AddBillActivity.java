@@ -73,11 +73,7 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
         btnGetSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    multiClick();
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+                multiClick();
             }
         });
 
@@ -133,7 +129,9 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
         });
     }
 
-    public void multiClick() throws InterruptedException {
+    public void multiClick() {
+        int tt = 0, pr, qu = 0, idBook;
+        int sum = 0;
         ArrayList<Book> selectedBooks = adapter.getSelected();
         String s = edt_CreateDate.getText().toString();
         if (s.equals("")) {
@@ -146,11 +144,8 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
             tv_TongThanhToan = findViewById(R.id.textViewTongThanhToan);
             rcvData = findViewById(R.id.recyclerView_Data);
             tvDate = findViewById(R.id.textViewDateCreate);
-
-            int tt, pr, qu, idBook;
             List<Integer> numbers = new ArrayList<>();
             List<Detail> list = new ArrayList<>(); // Khởi tạo lại danh sách Detail
-
             tvDate.setText(date);
             for (Book book : selectedBooks) {
                 pr = Integer.parseInt(book.getPrice());
@@ -160,12 +155,8 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
                 list.add(detail);
                 tt = pr * qu;
                 numbers.add(tt);
-
-                Log.d("Hoan Book", "multiClick: " + "idBook: " + idBook + " name: " + book.getName() + " pr: " + pr + " qu:" + qu);
-
             }
             // Tính tổng tiền thanh toán
-            int sum = 0;
             for (int number : numbers) {
                 sum += number;
             }
@@ -173,15 +164,18 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
             // Tạo Bill và gọi API để thêm Bill và các Detail
             String dateOfBuy = tvDate.getText().toString();
             Bill bill = new Bill(dateOfBuy, list);
-
             ApiService.apiService.postBill(bill).enqueue(new Callback<ResponseBill>() {
                 @Override
                 public void onResponse(Call<ResponseBill> call, Response<ResponseBill> response) {
+                    if (response.code() == 200) {
+                        Toast.makeText(AddBillActivity.this, "Thanh toán thành công!", Toast.LENGTH_SHORT).show();
+                    }
                     //cap nhat so luong sau khi mua
                     ApiService.apiService.updateListBook().enqueue(new Callback<Book>() {
                         @Override
                         public void onResponse(Call<Book> call, Response<Book> response) {
                         }
+
                         @Override
                         public void onFailure(Call<Book> call, Throwable throwable) {
                         }
@@ -193,17 +187,10 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
                     Toast.makeText(AddBillActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                 }
             });
-
-
             // Tạo một adapter mới với list các item được chọn
             TotalMoneyAdapter selectedItemsAdapter = new TotalMoneyAdapter(this, selectedBooks);
             rcvData.setLayoutManager(new LinearLayoutManager(this));
             rcvData.setAdapter(selectedItemsAdapter);
-
-
-
-
-
 
         }
     }

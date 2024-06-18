@@ -77,13 +77,13 @@ public class MultiAdapterBook extends RecyclerView.Adapter<MultiAdapterBook.Mult
             imgMinus.setVisibility(book.isChecked() ? View.VISIBLE : View.GONE);
             imgMinus.setVisibility(book.isChecked() ? View.VISIBLE : View.GONE);
 
-            Log.d("TAG", "bind: "+tvQuantity.getText().toString());
-
+            Log.d("TAG", "bind: " + tvQuantity.getText().toString());
 
             tvPrice.setText(String.valueOf(book.getPrice()));
             textView.setText(book.getName());
             textViewId.setText(book.getIdBook());
             tvQuantity.setText(String.valueOf(book.getQuantity()));
+            int s = Integer.parseInt(tvQuantity.getText().toString());
 
             itemView.setOnClickListener(new View.OnClickListener() {
 
@@ -92,9 +92,7 @@ public class MultiAdapterBook extends RecyclerView.Adapter<MultiAdapterBook.Mult
                     book.setChecked(!book.isChecked());
                     imageView.setVisibility(book.isChecked() ? View.VISIBLE : View.GONE);
                     imgAdd.setVisibility(book.isChecked() ? View.VISIBLE : View.GONE);
-
                     int m = Integer.parseInt(tvQ.getText().toString());
-
 
                     imgMinus.setVisibility(book.isChecked() ? View.VISIBLE : View.GONE);
                     tvQ.setVisibility(book.isChecked() ? View.VISIBLE : View.GONE);
@@ -102,8 +100,10 @@ public class MultiAdapterBook extends RecyclerView.Adapter<MultiAdapterBook.Mult
                         Toast.makeText(context, "Nhập số lượng mua", Toast.LENGTH_SHORT).show();
                     }
                     if (m < 0 || m == 0) {
+
                         imgMinus.setVisibility(View.INVISIBLE);
                         book.setQuantity("0");
+
                     }
                     imgAdd.setOnClickListener(new View.OnClickListener() {
 
@@ -118,6 +118,11 @@ public class MultiAdapterBook extends RecyclerView.Adapter<MultiAdapterBook.Mult
                             int n = Integer.parseInt(tvQ.getText().toString());
                             if (n > 0) {
                                 imgMinus.setVisibility(View.VISIBLE);
+                            }
+
+                            if (n == s) {
+                                Toast.makeText(context, "Sản phẩm đã hết, vui lòng nhập thêm!", Toast.LENGTH_LONG).show();
+                                imgAdd.setVisibility(View.INVISIBLE);
                             }
                             book.setQuantity(tvQ.getText().toString());
                         }
@@ -134,6 +139,12 @@ public class MultiAdapterBook extends RecyclerView.Adapter<MultiAdapterBook.Mult
                             int n = Integer.parseInt(tvQ.getText().toString());
                             if (n < 1) {
                                 imgMinus.setVisibility(View.INVISIBLE);
+                            }
+                            if (n == 0 || n < s) {
+                                imgAdd.setVisibility(View.VISIBLE);
+                            }
+                            if (n == 0) {
+                                Toast.makeText(context, "Vui lòng nhập số lượng!", Toast.LENGTH_LONG).show();
                             }
                             book.setQuantity(tvQ.getText().toString());
 
