@@ -174,10 +174,18 @@ public class AddBillActivity extends AppCompatActivity implements DatePickerDial
                     ApiService.apiService.updateListBook().enqueue(new Callback<Book>() {
                         @Override
                         public void onResponse(Call<Book> call, Response<Book> response) {
+                            if (response.code() == 200) {
+                                Intent intent = new Intent(AddBillActivity.this, ListBillActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Toast.makeText(AddBillActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                            }
                         }
 
                         @Override
                         public void onFailure(Call<Book> call, Throwable throwable) {
+                            Toast.makeText(AddBillActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
